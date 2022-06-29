@@ -7,8 +7,8 @@ import userMsg from './cmps/userMsg.cmp.js'
 import appFooter from './cmps/footer.cmp.js'
 
 // apps
-import mailApp from './mail/main.mail.js'
-import keepApp from './keep/main.keep.js'
+import mailApp from './apps/mail/main.mail.js'
+import keepApp from './apps/keep/main.keep.js'
 
 const options = {
     template: `

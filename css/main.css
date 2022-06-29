@@ -15,6 +15,6 @@
 @import 'css/cmps/header.cmp.css';
 
 /* apps */
-@import 'css/books/main.books.css';
-@import 'css/keep/main.keep.css';
-@import 'css/mail/main.mail.css';
+@import 'css/apps/books/main.books.css';
+@import 'css/apps/keep/main.keep.css';
+@import 'css/apps/mail/main.mail.css';
