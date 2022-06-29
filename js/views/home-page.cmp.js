@@ -1,6 +1,6 @@
 export default {
     template: `
-<h2>keep app</h2>
+    <h2>Home Page</h2>
 `,
     data() {
         return {};

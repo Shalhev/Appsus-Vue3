@@ -1,20 +1,20 @@
 /* setup */
-@import 'css/setup/typography.css';
-@import 'css/setup/vars.css';
+@import './setup/typography.css';
+@import './setup/vars.css';
 
 /* basic */
-@import 'css/basic/base.css';
-@import 'css/basic/helpers.css';
-@import 'css/basic/layout.css';
+@import './basic/base.css';
+@import './basic/helpers.css';
+@import './basic/layout.css';
 
 /* views */
-@import 'css/views/home.cmp.css';
+@import './views/home.cmp.css';
 
 /* cmps */
-@import 'css/cmps/header.cmp.css';
-@import 'css/cmps/header.cmp.css';
+@import './cmps/header.cmp.css';
+@import './cmps/header.cmp.css';
 
 /* apps */
-@import 'css/apps/books/main.books.css';
-@import 'css/apps/keep/main.keep.css';
-@import 'css/apps/mail/main.mail.css';
+/* @import './apps/books/main.books.css'; */
+@import './apps/keep/main.keep.css';
+@import './apps/mail/main.mail.css';

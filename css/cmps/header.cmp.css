@@ -1,0 +1,23 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    align-items: center;
+}
+
+.app-header .logo{
+    font-size: 2em;
+    font-family: Roboto-bold;
+}
+.app-header .logo-blue {
+    color: #4285F4;
+}
+.app-header .logo-red {
+    color: #EA4335;
+}
+.app-header .logo-yellow {
+    color: #FBBC05;
+}
+.app-header .logo-green {
+    color: #34A853;
+}
