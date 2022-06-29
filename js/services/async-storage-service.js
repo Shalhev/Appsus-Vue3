@@ -4,7 +4,8 @@ export const storageService = {
     post,
     put,
     remove,
-    postMany
+    postMany,
+    save
 }
 
 // gets all the items
@@ -25,7 +26,7 @@ function post(entityType, newEntity) {
     return query(entityType)
         .then(entities => {
             entities.push(newEntity);
-            _save(entityType, entities)
+            save(entityType, entities)
             return newEntity;
         })
 }
@@ -35,7 +36,7 @@ function postMany(entityType, newEntities) {
     return query(entityType)
         .then(entities => {
             entities.push(...newEntities);
-            _save(entityType, entities)
+            save(entityType, entities)
             return entities;
         })
 }
@@ -46,7 +47,7 @@ function put(entityType, updatedEntity) {
         .then(entities => {
             const idx = entities.findIndex(entity => entity.id === updatedEntity.id);
             entities.splice(idx, 1, updatedEntity)
-            _save(entityType, entities)
+            save(entityType, entities)
             return updatedEntity;
         })
 }
@@ -56,12 +57,12 @@ function remove(entityType, entityId) {
         .then(entities => {
             const idx = entities.findIndex(entity => entity.id === entityId);
             entities.splice(idx, 1)
-            _save(entityType, entities)
+            save(entityType, entities)
         })
 }
 
 //save to local storage
-function _save(entityType, entities) {
+function save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 

@@ -1,0 +1,55 @@
+.keep-app {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.new-note {
+    background-color: lightslategray;
+    width: 100%;
+    height: 15%;
+}
+
+.side-bar {
+    background-color: lightcoral;
+    height: 90vh;
+    width: 20%;
+}
+
+.notes-list {
+    width: 80%;
+    height: 90vh;
+    display: flex;
+    gap: 1rem;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.note-container {
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    border: 1px solid black;
+    min-width: 10rem;
+}
+
+.note {
+    width: 100%;
+    height: 100%;
+}
+
+.new-note {
+    display: flex;
+    align-items: center;
+}
+
+.new-note input {
+    margin: auto .5rem;
+    padding: .2rem;
+    font-size: 1.3rem;
+    border-radius: .5rem;
+    border: none;
+}
+
+.notes-list ul {
+    padding: 0;
+}
