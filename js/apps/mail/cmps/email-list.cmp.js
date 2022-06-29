@@ -5,6 +5,7 @@ export default {
     template: `
     <section class="email-list">
         <table>
+        <tbody>
             <tr v-for="email in emails" @click="select(email)" :class="{ notRead: !email.isRead, read: email.isRead }">
                 <router-link :to="'/mail/'+email.id">
                 <td><img :src="starImg"></td>
@@ -12,9 +13,10 @@ export default {
                 <td>{{email.subject}}</td>
                 <td>{{email.body}}</td>
                 <td>{{email.sentAt}}</td>
-                <td><button @click="binEmail(email)">X</button></td>
+                <td><button @click.stop="binEmail(email)">X</button></td>
             </router-link>
             </tr>
+        </tbody>
         </table>
     </section>
 `,
@@ -34,10 +36,14 @@ export default {
             emailService.updateEmail(email)
             this.$emit("selected", email);
         },
-        binEmail(email){
-            console.log('email: ', email)
+        binEmail(email) {
+            console.log('email removed: ', email.id)
+            if (email.isBin)
+                return emailService.removeEmail(email.id)
+                    .then(() => this.$emit("changeList"))
             email.isBin = true
-            emailService.updateEmail(email)
+            emailService.updateEmail(email).then(() => this.$emit("changeList"))
+
         }
     },
     computed: {

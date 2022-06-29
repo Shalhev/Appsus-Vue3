@@ -8,7 +8,7 @@ export default {
     <input type="text" v-model="email.subject" placeholder="Subject">
     <textarea name="" v-model="email.body" id="" cols="30" rows="10"></textarea>
     <button @click="sendEmail">Send</button>
-    <pre>{{email}}</pre>
+    <!-- <pre>{{email}}</pre> -->
 `,
     data() {
         return {

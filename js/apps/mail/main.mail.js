@@ -18,7 +18,7 @@ export default {
         <div class="mail-box">
             <h2>Mail App</h2>
             <pre>{{emails}}</pre>
-            <email-list v-if="emails" :emails="emailsToShow" @selected="selectEmail"/>
+            <email-list v-if="emails" :emails="emailsToShow" @selected="selectEmail" @changeList="updateEmails"/>
             <email-details v-if="selectedEmail" :email="selectedEmail"/>
             <new-email v-if="isCompose"/>
         </div>
@@ -52,6 +52,9 @@ export default {
         setFilter(filter) {
             console.log('filter: ', filter)
             this.filter = filter
+        },
+        updateEmails(){
+            emailService.query().then(emails => this.emails = emails)
         }
 
     },
