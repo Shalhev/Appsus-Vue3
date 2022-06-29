@@ -1,0 +1,26 @@
+.email-list {
+    line-height: 20px;
+}
+
+.email-list .notRead {
+    font-family: Roboto-bold;
+    background-color: #fff;
+
+}
+
+.email-list .read {
+    background-color: rgb(242 245 245 / 80%);
+}
+
+.email-list .notStarred {
+    color: darkgrey;
+}
+
+.email-list .starred {
+    color: rgb(255, 204, 0);
+}
+
+table {
+    width: 100%;
+
+}
