@@ -38,6 +38,8 @@ input[type="color"]::-webkit-color-swatch {
     display: flex;
     flex-flow: column wrap;
     gap: 2rem;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .notes-top-container {
@@ -51,6 +53,7 @@ input[type="color"]::-webkit-color-swatch {
 .notes-container {
     display: flex;
     flex-wrap: wrap;
+    gap: .5rem;
     justify-content: space-around;
     align-items: center;
 }
@@ -210,9 +213,8 @@ input[type="color"]::-webkit-color-swatch {
 
 .notes-list #screen {
     position: absolute;
+    inset: 0;
     z-index: 1;
-    height: 100vh;
-    width: 80%;
     pointer-events: none;
 }
 

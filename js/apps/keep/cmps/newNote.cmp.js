@@ -19,14 +19,14 @@ export default {
                 <input type="text" placeholder="Enter video url..." v-model="note.info.videoUrl">
             </div>
 
-            <div class="note-type-select">
+            <div v-if="!editedNote" class="note-type-select">
                 <button data-type='note-txt' @click="setType($event)" class="fa">&#xf040;</button>
                 <button data-type='note-img' @click="setType($event)" class="fa">&#xf03e;</button>
                 <button data-type='note-video' @click="setType($event)" class="fa">&#xf166;</button>
                 <button data-type='note-todos' @click="setType($event)" class="fa">&#xf03a;</button>
-                <input type="color" v-model="note.style.backgroundColor">
             </div>
             <div class="new-note-bottom">
+                <input type="color" v-model="note.style.backgroundColor">
                 <button @click="save" class="fa">&#xf0c7;</button>
             </div>
         </div>
@@ -50,11 +50,11 @@ export default {
         formatSaveTodos(todosStr) {
             const tasks = todosStr.split(',')
             this.note.info.todos = tasks.map(task => {
-                return { txt: task.trim(), isDone: false }
+                return { txt: task, isDone: false }
             })
         },
         formatLoadTodos() {
-            this.note.info.todos = this.note.info.todos.map(task => task.txt ).join(',')
+            this.note.info.todos = this.note.info.todos.map(task => task.txt).join(',')
         },
         save() {
             if (this.note.info.txt || this.note.info.url || this.note.info.videoUrl || this.note.info.label) {

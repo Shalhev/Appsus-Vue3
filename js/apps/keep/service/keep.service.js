@@ -60,6 +60,33 @@ const defaultNotes = [
             backgroundColor: getRandomColor()
         }
     },
+    {
+        id: "n104",
+        type: "note-img",
+        isPinned: false,
+        isBin: false,
+        isArch: false,
+        info: {
+            url: "https://picsum.photos/200/300",
+            title: "Bobi and Me"
+        },
+        style: {
+            backgroundColor: getRandomColor()
+        }
+    },
+    {
+        id: "n105",
+        type: 'note-video',
+        isPinned: false,
+        isBin: false,
+        isArch: false,
+        info: {
+            videoUrl: 'https://www.youtube.com/embed/4C-1Eff3X1E',
+        },
+        style: {
+            backgroundColor: getRandomColor()
+        }
+    }
 ]
 
 _createNotes()
