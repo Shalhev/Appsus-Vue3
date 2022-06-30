@@ -45,6 +45,7 @@ export const emailService = {
     removeEmail,
     updateEmail,
     getEmptyEmail,
+    getLoggedinUser,
 };
 
 function query() {
@@ -55,10 +56,14 @@ function _saveEmails() {
     if (!localStorage.getItem(EMAILS_KEY))
         storageService.save(EMAILS_KEY, emails);
 }
+function getLoggedinUser(){
+    return loggedinUser
+}
 
 function get(emailId) {
     return storageService.get(EMAILS_KEY, emailId)
 }
+
 function updateEmail(email) {
     return storageService.put(EMAILS_KEY, email)
 }

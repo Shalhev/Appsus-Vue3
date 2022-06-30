@@ -28,10 +28,12 @@ export default {
             selectedEmail: null,
             isCompose: false,
             filter: null,
+            loggedinUserr: null
 
         };
     },
     created() {
+        this.loggedinUserr = emailService.getLoggedinUser()
         emailService.query().then(emails => this.emails = emails)
         this.filter = this.$route.params.filter
         const { emailId } = this.$route.params
@@ -64,7 +66,7 @@ export default {
             if (filter === 'inbox') return emails.filter(email => email.to === 'user@appsus.com')
             else if (filter === 'starred') return emails.filter(email => email.isStarred && !email.isBin)
             else if (filter === 'important') return emails.filter(email => email.isImportant && !email.isBin)
-            else if (filter === 'sent') return emails.filter(email => email.to !== 'user@appsus.com' && !email.isBin)
+            else if (filter === 'sent') return emails.filter(email => email.to !== this.loggedinUserr.email && !email.isBin)
             else if (filter === 'draft') return emails.filter(email => email.isDraft && !email.isBin)
             else if (filter === 'bin') return emails.filter(email => email.isBin)
         }

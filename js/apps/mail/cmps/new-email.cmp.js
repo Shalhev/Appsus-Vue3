@@ -23,8 +23,8 @@ export default {
                 body: '',
                 sentAt: null,
                 to: '',
-                name: 'Momo',
-                isRead: false,
+                name: '',
+                isRead: true,
                 isStarred: false,
                 isImportant: false,
                 isDraft: false,
@@ -34,6 +34,8 @@ export default {
         }
     },
     created() {
+        const loggedinUserr = emailService.getLoggedinUser()
+        this.email.name = loggedinUserr.fullname
         // this.email = emailService.getEmptyEmail()
     },
     methods: {
