@@ -8,7 +8,9 @@ import noteVideo from './note-video.cmp.js'
 export default {
     template: `
     <section class="notes-list">
-        <new-note @save-note="saveNote"/>
+        <div class="new-note-container">
+            <new-note @save-note="saveNote"/>
+        </div>
             <div v-for="(note,idx) in orderedNotes" :key="note.id" class="note-container">
                     <component :is="note.type" class="note"
                     :style="note.style"
@@ -48,7 +50,7 @@ export default {
     },
     computed: {
         orderedNotes() {
-            if(!this.notes) return
+            if (!this.notes) return
             const pinned = []
             const notPinned = []
             this.notes.forEach(note => {

@@ -28,14 +28,6 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: 50%;
 }
 
-.new-note {
-    margin-top: 2rem;
-    border: 1px solid lightgrey;
-    width: 80%;
-    border-radius: 1rem;
-    align-self: flex-start;
-}
-
 .keep-app .side-bar {
     background-color: lightgrey;
     width: 20%;
@@ -69,8 +61,18 @@ input[type="color"]::-webkit-color-swatch {
     max-width: 300px;
 }
 
+.new-note-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .new-note {
     padding: .5rem;
+    border: 1px solid lightgrey;
+    width: 80%;
+    border-radius: 1rem;
+    align-self: flex-start;
 }
 
 .new-note input {
