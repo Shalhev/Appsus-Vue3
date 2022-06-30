@@ -4,7 +4,7 @@ export default {
     <iframe width="350" height="250" :src="videoUrl"></iframe>
 </section>
 `,
-    props: ['info'],
+    props: ['note'],
     data() {
         return {};
     },
@@ -13,7 +13,7 @@ export default {
     methods: {},
     computed: {
         videoUrl() {
-            const url = this.info.videoUrl
+            const url = this.note.info.videoUrl
             const idStart = url.indexOf('v=') + 2
             const idEnd = idStart + 11 //yt video ids are 11 digits long
             const videoId = url.substring(idStart, idEnd)

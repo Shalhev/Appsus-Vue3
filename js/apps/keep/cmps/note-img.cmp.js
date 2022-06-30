@@ -1,11 +1,11 @@
 export default {
     template: `
 <article class="note-img">
-    <img :src="info.url" alt="note-img">
-    <p>{{info.title}}</p>
+    <img :src="note.info.url" alt="note-img">
+    <p>{{note.info.title}}</p>
 </article>
 `,
-    props: ['info'],
+    props: ['note'],
     data() {
         return {};
     },

@@ -14,7 +14,7 @@ export default {
                 <div v-if="notes" v-for="note in archNotes" :key="note.id" class="note-container">
                         <component :is="note.type" class="note"
                         :style="note.style"
-                        :info="note.info">
+                        :note="note">
                     </component>
                     <div class="note-edit">
                         <button @click="unarchNote(note.id)" title="restore" class="fa">&#xf0c7;</button>

@@ -1,6 +1,6 @@
 .keep-app {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: 2fr 8fr;
 }
 
 button.fa {
@@ -9,6 +9,7 @@ button.fa {
     font-size: 1.3em;
     padding: .3rem;
     border-radius: 1rem;
+    cursor: pointer;
 }
 
 button.fa:hover,
@@ -30,7 +31,6 @@ input[type="color"]::-webkit-color-swatch {
 
 .keep-app .side-bar {
     border-inline-end: 1px solid lightgrey;
-    width: 20%;
     height: 90vh;
 }
 
@@ -38,30 +38,11 @@ input[type="color"]::-webkit-color-swatch {
     display: flex;
     flex-flow: column wrap;
     gap: 2rem;
-    width: 80%;
-}
-
-.note-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-flow: column wrap;
-    border: 1px solid lightgrey;
-    border-radius: .3rem;
-}
-
-.note {
-    padding: .5rem;
-    text-align: center;
-}
-
-.note img {
-    max-width: 300px;
 }
 
 .notes-top-container {
-    align-self: flex-start;
     width: 100%;
+    align-self: flex-start;
     margin-top: 1.5rem;
     display: flex;
     justify-content: center;
@@ -69,11 +50,43 @@ input[type="color"]::-webkit-color-swatch {
 
 .notes-container {
     display: flex;
-    flex-flow: row wrap;
+    flex-wrap: wrap;
     justify-content: space-around;
-    gap: 1.5rem;
     align-items: center;
 }
+
+.note-container {
+    position: relative;
+    display: flex;
+    border:none;
+}
+
+.note {
+    border: 1px solid lightgrey;
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-radius: .4rem;
+}
+
+.note img {
+    border-top-left-radius:  .4rem;
+    border-top-right-radius:  .4rem;
+    max-width: 500px;
+}
+
+.note-edit {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.559);
+    border-top-left-radius: .4rem;
+    border-top-right-radius: .4rem;
+}
+
+
 
 .new-note,
 .notes-top-container .shrinked-note-input {
@@ -152,4 +165,33 @@ input[type="color"]::-webkit-color-swatch {
     color: #4285F4;
     outline: 1px solid gray;
     border-radius: 1rem;
+}
+
+.task {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: .3rem;
+}
+
+.crossed {
+    text-decoration: line-through;
+    opacity: .7;
+}
+
+.task-txt {
+    cursor: pointer;
+}
+
+.remove-task:hover {
+    color: darkred;
+    cursor: pointer;
+}
+
+.front {
+    outline: 1px solid red;
+}
+
+.front img {
+    max-width: 500px;
 }

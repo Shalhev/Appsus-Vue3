@@ -8,7 +8,9 @@ export const keepService = {
     togglePinNote,
     toggleArchNote,
     removeNote,
-    
+    toggleDoneTask,
+    removeTask,
+
 };
 const NOTES_KEY = 'notes';
 
@@ -49,8 +51,8 @@ const defaultNotes = [
         info: {
             label: "Get my stuff together",
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
+                { txt: "Driving liscence", isDone: false },
+                { txt: "Coding power", isDone: false }
             ],
         },
         style: {
@@ -131,6 +133,22 @@ function toggleArchNote(noteId) {
             return storageService.put(NOTES_KEY, note)
         })
         .then(() => storageService.query(NOTES_KEY))
+}
+
+function toggleDoneTask(noteId, taskIdx) {
+    return storageService.get(NOTES_KEY, noteId)
+        .then(note => {
+            note.info.todos[taskIdx].isDone = !note.info.todos[taskIdx].isDone
+            return storageService.put(NOTES_KEY, note)
+        })
+}
+
+function removeTask(noteId, taskIdx) {
+    return storageService.get(NOTES_KEY, noteId)
+        .then(note => {
+            note.info.todos.splice(taskIdx, 1)
+            return storageService.put(NOTES_KEY, note)
+        })
 }
 
 function getRandomColor() {

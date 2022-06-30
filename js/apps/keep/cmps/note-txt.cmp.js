@@ -1,11 +1,11 @@
 export default {
     template: `
 <article class='note-txt'>
-    <h3>{{info.title}}</h3>
-    <p>{{info.txt}}</p>
+    <h3>{{note.info.title}}</h3>
+    <p>{{note.info.txt}}</p>
 </article>
 `,
-    props: ['info'],
+    props: ['note'],
     data() {
         return {};
     },
