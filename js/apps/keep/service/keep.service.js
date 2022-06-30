@@ -4,17 +4,21 @@ export const keepService = {
     query,
     getEmptyNote,
     addNote,
+    toggleBinNote,
+    togglePinNote,
+    toggleArchNote,
     removeNote,
-    togglePinNote
+    
 };
 const NOTES_KEY = 'notes';
-const YT_KEY = 'AIzaSyDFsOEh7ELzyN6gkO-QzdyOvaamdcp1RuA'
 
 const defaultNotes = [
     {
         id: "n101",
         type: "note-txt",
         isPinned: false,
+        isBin: false,
+        isArch: false,
         info: {
             txt: "Fullstack Me Baby!"
         },
@@ -26,6 +30,8 @@ const defaultNotes = [
         id: "n102",
         type: "note-img",
         isPinned: false,
+        isBin: false,
+        isArch: false,
         info: {
             url: "https://picsum.photos/200",
             title: "Bobi and Me"
@@ -38,6 +44,8 @@ const defaultNotes = [
         id: "n103",
         type: "note-todos",
         isPinned: false,
+        isBin: false,
+        isArch: false,
         info: {
             label: "Get my stuff together",
             todos: [
@@ -69,6 +77,8 @@ function getEmptyNote() {
         id: null,
         type: 'note-txt',
         isPinned: false,
+        isBin: false,
+        isArch: false,
         info: {
             txt: null,
             url: null,
@@ -93,6 +103,7 @@ function addNote(note) {
         .then(() => storageService.query(NOTES_KEY))
 }
 
+
 function removeNote(noteId) {
     return storageService.remove(NOTES_KEY, noteId)
         .then(() => storageService.query(NOTES_KEY))
@@ -103,6 +114,23 @@ function togglePinNote(noteId) {
             note.isPinned = !note.isPinned
             return storageService.put(NOTES_KEY, note)
         }).then(() => storageService.query(NOTES_KEY))
+}
+
+function toggleBinNote(noteId) {
+    return storageService.get(NOTES_KEY, noteId)
+        .then(note => {
+            note.isBin = !note.isBin
+            return storageService.put(NOTES_KEY, note)
+        })
+        .then(() => storageService.query(NOTES_KEY))
+}
+function toggleArchNote(noteId) {
+    return storageService.get(NOTES_KEY, noteId)
+        .then(note => {
+            note.isArch = !note.isArch
+            return storageService.put(NOTES_KEY, note)
+        })
+        .then(() => storageService.query(NOTES_KEY))
 }
 
 function getRandomColor() {

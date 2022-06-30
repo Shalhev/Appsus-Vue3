@@ -18,29 +18,27 @@ button.pinned {
 
 input[type="color"] {
     background-color: transparent;
-    width: 2.7rem;
-    height: 2.7rem;
+    width: 2.5rem;
+    height: 2.5rem;
     cursor: pointer;
 }
 
 input[type="color"]::-webkit-color-swatch {
-    border: 1px solid #333;
+    border: none;
     border-radius: 50%;
 }
 
 .keep-app .side-bar {
-    background-color: lightgrey;
+    border-inline-end: 1px solid lightgrey;
     width: 20%;
     height: 90vh;
 }
 
 .notes-list {
-    width: 80%;
     display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    gap: 1rem;
-    align-items: center;
+    flex-flow: column wrap;
+    gap: 2rem;
+    width: 80%;
 }
 
 .note-container {
@@ -61,13 +59,24 @@ input[type="color"]::-webkit-color-swatch {
     max-width: 300px;
 }
 
-.new-note-container {
+.notes-top-container {
+    align-self: flex-start;
     width: 100%;
+    margin-top: 1.5rem;
     display: flex;
     justify-content: center;
 }
 
-.new-note {
+.notes-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.new-note,
+.notes-top-container .shrinked-note-input {
     padding: .5rem;
     border: 1px solid lightgrey;
     width: 80%;
@@ -75,13 +84,13 @@ input[type="color"]::-webkit-color-swatch {
     align-self: flex-start;
 }
 
-.new-note input {
+.notes-top-container input {
     padding: .2rem;
     font-size: 1.3rem;
     border: none;
 }
 
-.new-note input:focus {
+.notes-top-container input:focus {
     outline: none;
 }
 
@@ -116,4 +125,31 @@ input[type="color"]::-webkit-color-swatch {
     display: flex;
     padding: .5rem;
     justify-content: flex-end;
+}
+
+/* sidebar */
+.side-bar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.side-bar-nav {
+    margin-top: 1rem;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+.side-bar-nav a {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2em;
+    padding: .5rem;
+}
+
+.side-bar-nav a:hover {
+    color: #4285F4;
+    outline: 1px solid gray;
+    border-radius: 1rem;
 }

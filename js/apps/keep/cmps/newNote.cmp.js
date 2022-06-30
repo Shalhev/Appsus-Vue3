@@ -4,7 +4,7 @@ export default {
     <section class="new-note">
         <div class="note-control">
             <div v-if="note.type==='note-txt'" class="new-note-inputs">
-                <input type="text" placeholder="Title" v-model="note.info.title">
+                <input ref="txtInput" type="text" placeholder="Title" v-model="note.info.title">
                 <input type="text" placeholder="Take a note..." v-model="note.info.txt">
             </div>
             <div v-if="note.type==='note-img'" class="new-note-inputs"> 
@@ -23,7 +23,7 @@ export default {
                 <button data-type='note-txt' @click="setType($event)" class="fa">&#xf040;</button>
                 <button data-type='note-img' @click="setType($event)" class="fa">&#xf03e;</button>
                 <button data-type='note-video' @click="setType($event)" class="fa">&#xf166;</button>
-                <button data-type='note-todos' @click="setType($event)"class="fa">&#xf03a;</button>
+                <button data-type='note-todos' @click="setType($event)" class="fa">&#xf03a;</button>
                 <input type="color" v-model="note.style.backgroundColor">
             </div>
             <div class="new-note-bottom">
@@ -60,21 +60,8 @@ export default {
         },
     },
     computed: {},
+    mounted() {
+        this.$refs.txtInput.focus()
+    },
     unmounted() { },
 };
-
-    // {
-    //     type: 'note-txt',
-    //     isPinned: false,
-    //     info: {
-    //         txt: null,
-    //         url: null,
-    // videoUrl:null,
-    //         title: null,
-    //         label: null,
-    //         todos: null,
-    //     },
-    //     style: {
-    //         backgroundColor: "#00d"
-    //     }
-    // }
