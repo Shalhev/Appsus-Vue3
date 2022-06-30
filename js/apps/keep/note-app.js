@@ -8,7 +8,8 @@ export default {
         <notes-list :notes="notes"/>
         <side-bar/>
     </main>
-`, components: {
+`
+    , components: {
         sideBar,
         notesList,
     },
