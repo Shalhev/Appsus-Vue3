@@ -32,6 +32,7 @@ export default {
         </div>
     </section>
 `,
+    props: ['editedNote'],
 
     data() {
         return {
@@ -39,19 +40,26 @@ export default {
         };
     },
     created() {
-        this.note = keepService.getEmptyNote()
+        if (this.editedNote) {
+            this.note = this.editedNote
+            if (this.note.type === 'note-todos') this.formatLoadTodos()
+        }
+        else this.note = keepService.getEmptyNote()
     },
     methods: {
-        formatTodos(todosStr) {
+        formatSaveTodos(todosStr) {
             const tasks = todosStr.split(',')
             this.note.info.todos = tasks.map(task => {
-                return { txt: task, doneAt: null }
+                return { txt: task.trim(), isDone: false }
             })
+        },
+        formatLoadTodos() {
+            this.note.info.todos = this.note.info.todos.map(task => task.txt ).join(',')
         },
         save() {
             if (this.note.info.txt || this.note.info.url || this.note.info.videoUrl || this.note.info.label) {
-                if (this.note.info.todos) this.formatTodos(this.note.info.todos)
-                this.$emit('save-note', this.note)
+                if (this.note.type === 'note-todos') this.formatSaveTodos(this.note.info.todos)
+                this.editedNote ? this.$emit('update-note', this.note) : this.$emit('save-note', this.note)
                 this.note = keepService.getEmptyNote()
             }
         },
@@ -61,7 +69,7 @@ export default {
     },
     computed: {},
     mounted() {
-        this.$refs.txtInput.focus()
+        if (!this.editedNote) this.$refs.txtInput.focus()
     },
     unmounted() { },
 };

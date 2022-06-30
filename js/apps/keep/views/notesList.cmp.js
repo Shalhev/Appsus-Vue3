@@ -7,17 +7,21 @@ import noteVideo from '../cmps/note-video.cmp.js'
 export default {
     template: `
  <section class="notes-list">
+    <div id="screen" :class="{show:noteToEdit!==null}" @click="noteToEdit=null"></div>
     <div class="notes-top-container">
         <new-note v-if="noteTaking" @save-note="saveNote" />
         <input v-else type="text" class="shrinked-note-input" placeholder="Take a note..." @click="noteTaking=true">
     </div>
     <div class="notes-container" @click="noteTaking=false">
+    <new-note v-if="noteToEdit" :editedNote="noteToEdit" @save-note="saveNote" @update-note="updateNote" 
+                class="edit-modal"/>
         <article v-if="notes" v-for="note, in orderedNotes" :key="note.id" class="note-container"
-            @mouseover="note.isEdit=true" @mouseleave="note.isEdit=false" @click="showEditModal">
+            @mouseover="note.isEdit=true" @mouseleave="note.isEdit=false">
             <component :is="note.type" class="note" :style="note.style" :note="note"></component>
             <div v-if="note.isEdit" class="note-edit">
                 <button @click="togglePin(note.id)" class="fa" title="pin/unpin"
                     :class="{pinned:note.isPinned}">&#xf08d;</button>
+                <button @click="noteToEdit=note" class="fa" title="edit">&#xf044;</button>
                 <button @click="archiveNote(note.id)" class="fa" title="archive">&#xf187;</button>
                 <button @click="binNote(note.id)" class="fa" title="move to bin">&#xf014;</button>
             </div>
@@ -32,6 +36,7 @@ export default {
     data() {
         return {
             noteTaking: false,
+            noteToEdit: null,
         };
     },
     created() {
@@ -46,13 +51,14 @@ export default {
         archiveNote(noteId) {
             this.$emit('archive', noteId)
         },
-        saveNote(noteId) {
+        saveNote(note) {
             this.noteTaking = false
-            this.$emit('save', noteId)
+            this.$emit('save', note)
         },
-        showEditModal(){
-            console.log('now editing');
-        }
+        updateNote(note) {
+            this.noteToEdit = null
+            this.$emit('update', note)
+        },
     },
     computed: {
         orderedNotes() {

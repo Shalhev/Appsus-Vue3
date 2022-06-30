@@ -10,6 +10,7 @@ export const keepService = {
     removeNote,
     toggleDoneTask,
     removeTask,
+    updateNote,
 
 };
 const NOTES_KEY = 'notes';
@@ -100,7 +101,6 @@ function query() {
 }
 
 function addNote(note) {
-    console.log('saving note...');
     return storageService.post(NOTES_KEY, note)
         .then(() => storageService.query(NOTES_KEY))
 }
@@ -149,6 +149,11 @@ function removeTask(noteId, taskIdx) {
             note.info.todos.splice(taskIdx, 1)
             return storageService.put(NOTES_KEY, note)
         })
+}
+
+function updateNote(note) {
+    return storageService.put(NOTES_KEY, note)
+        .then(() => storageService.query(NOTES_KEY))
 }
 
 function getRandomColor() {
