@@ -7,13 +7,26 @@ export default {
     template: `
     <section class="mail-container">
         <nav class="side-bar">
-            <button @click="composeEmail">Compose</button>
-            <div class="btn" @click="setFilter('inbox')">Inbox</div>
-            <div class="btn" @click="setFilter('starred')">Starred</div>
-            <div class="btn" @click="setFilter('important')">Important</div>
-            <div class="btn" @click="setFilter('sent')">Sent</div>
-            <div class="btn" @click="setFilter('draft')">Drafts</div>
-            <div class="btn" @click="setFilter('bin')">Bin</div>
+            <button class="btn-compose" @click="composeEmail">
+                <span class="compose">Compose</span></button>
+            <div class="btn btn-inbox" @click="setFilter('inbox')">
+                <span class="btn-img img"></span>
+                <span class="inbox">Inbox</span></div>
+            <div class="btn btn-starred" @click="setFilter('starred')">
+                <span class="btn-img img"></span>
+                <span class="starred">Starred</span></div>
+            <div class="btn btn-important" @click="setFilter('important')">
+                <span class="btn-img img"></span>
+                <span class="important">Important</span></div>
+            <div class="btn btn-sent" @click="setFilter('sent')">
+                <span class="btn-img img"></span>
+                <span class="sent">Sent</span></div>
+            <div class="btn btn-draft" @click="setFilter('draft')">
+                <span class="btn-img img"></span>
+                <span class="draft">Drafts</span></div>
+            <div class="btn btn-bin" @click="setFilter('bin')">
+                <span class="btn-img img"></span>
+                <span class="bin">Bin</span></div>
         </nav>
         <div class="mail-box">
             <h2>Mail App</h2>
@@ -53,7 +66,7 @@ export default {
             console.log('filter: ', filter)
             this.filter = filter
         },
-        updateEmails(){
+        updateEmails() {
             emailService.query().then(emails => this.emails = emails)
         }
 

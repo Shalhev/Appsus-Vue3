@@ -18,6 +18,7 @@ const emails = [
         isStarred: false,
         isImportant: false,
         isDraft: false,
+        isSelected: false,
         isBin: false,
     },
     {
@@ -31,6 +32,7 @@ const emails = [
         isStarred: true,
         isImportant: false,
         isDraft: false,
+        isSelected: false,
         isBin: false,
     },
 ]

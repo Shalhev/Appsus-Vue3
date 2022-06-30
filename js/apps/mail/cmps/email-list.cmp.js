@@ -8,10 +8,11 @@ export default {
         <tbody>
             <tr v-for="email in emails" @click="select(email)" :class="{ notRead: !email.isRead, read: email.isRead }">
                 <router-link :to="'/mail/'+email.id">
-                <td><img :src="starImg"></td>
-                <td>{{email.name}}</td>
-                <td>{{email.subject}}</td>
-                <td>{{email.body}}</td>
+                <td><img :src="checkBoxImg(email)" @click="email.isSelected = !email.isSelected"/></td>
+                <td><img :src="starImg(email)" @click="email.isStarred = !email.isStarred"/></td>
+                <td><img :src="importantImg(email)" @click="email.isImportant = !email.isImportant"/></td>
+                <td class="name">{{email.name}}</td>
+                <td class="subject">{{email.subject}}<span class="body"> - {{email.body}}</span></td>
                 <td>{{email.sentAt}}</td>
                 <td><button @click.stop="binEmail(email)">X</button></td>
             </router-link>
@@ -25,8 +26,6 @@ export default {
     },
     data() {
         return {
-            starredImg: '../../../../imgs/apps/mail/starred.png',
-            notStarredImg: '../../../../imgs/apps/mail/notStarred.png'
         };
     },
     created() { },
@@ -43,18 +42,25 @@ export default {
                     .then(() => this.$emit("changeList"))
             email.isBin = true
             emailService.updateEmail(email).then(() => this.$emit("changeList"))
-
-        }
+        },
+        starImg(email) {
+            console.log('email:', email)
+            if (email.isStarred) return '../../../../imgs/apps/mail/starred.png'
+            else return '../../../../imgs/apps/mail/notStarred.png'
+        },
+        importantImg(email) {
+            if (email.isImportant) return '../../../../imgs/apps/mail/important_yellow.png'
+            else return '../../../../imgs/apps/mail/important_outline.png'
+        },
+        checkBoxImg(email) {
+            if (email.isSelected) return '../../../../imgs/apps/mail/checkbox_selected.png'
+            else return '../../../../imgs/apps/mail/checkbox_outline.png'
+        },
     },
     computed: {
         emailRead() {
             const read = this.email.isRead
             return { notRead: !read }
         },
-        starImg(email) {
-            // console.log('email:', email)
-            // if (isStarred) return this.starredImg
-            // else return this.notStarredImg
-        }
     },
 }

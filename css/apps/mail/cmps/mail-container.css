@@ -1,4 +1,100 @@
-.mail-container{
+.mail-container {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 17% 83%;
+}
+
+/* side-bar */
+.mail-container .side-bar {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding-right: 1.4em;
+}
+
+.side-bar .btn-compose {
+    font-family: Google-sans;
+    background-color: #fff;
+    margin: 1em 3em 1em 0em;
+    height: 3.3em;
+    width: 11em;
+    margin-left: 1em;
+    border: 0;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    border-radius: 8em;
+    background-image: url('../../../../imgs/apps/mail/compose.png');
+    background-position: 0.7em;
+    background-repeat: no-repeat;
+}
+
+.side-bar .btn-compose .compose {
+    margin-left: 1.6em;
+    color: #3c4043;
+    font-size: 1.1em;
+}
+
+.mail-container .side-bar .btn {
+    height: 2em;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.btn-inbox {
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    background-color: #fce8e6;
+
+}
+
+.btn-inbox .img {
+    margin-left: 1.75em;
+    width: 1.5em;
+    height: 1.5em;
+    background-image: url('../../../../imgs/apps/mail/inbox_black.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: .75em;
+}
+
+.btn-inbox .inbox:hover {
+    color: #de4d43;
+}
+
+.side-bar .btn:hover {
+    background-color: #e8eaed;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.side-bar .btn-img {
+    margin-left: 1.75em;
+    padding-left: 2.3em;
+    width: 1.5em;
+    height: 1.5em;
+    background-position: left;
+    background-repeat: no-repeat;
+    opacity: 0.54;
+}
+
+.btn-starred .img {
+    background-image: url('../../../../imgs/apps/mail/grade_black.png');
+}
+
+.btn-important .img {
+    background-image: url('../../../../imgs/apps/mail/important.png');
+}
+
+.btn-sent .img {
+    background-image: url('../../../../imgs/apps/mail/sent.png');
+}
+
+.btn-draft .img {
+    background-image: url('../../../../imgs/apps/mail/draft.png');
+}
+
+.btn-bin .img {
+    background-image: url('../../../../imgs/apps/mail/bin.png');
 }

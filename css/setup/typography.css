@@ -8,3 +8,8 @@
     font-family: Roboto-bold;
     src: url(../fonts/Roboto-Bold.ttf);
 }
+/* Google Sans  */
+@font-face {
+    font-family: Google-Sans;
+    src: url(../fonts/Google-sans.ttf);
+}

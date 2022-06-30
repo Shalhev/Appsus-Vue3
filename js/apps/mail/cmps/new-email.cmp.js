@@ -23,6 +23,7 @@ export default {
                 isStarred: false,
                 isImportant: false,
                 isDraft: false,
+                isSelected: false,
                 isBin: false,
             }
         }
