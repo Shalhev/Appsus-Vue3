@@ -45,16 +45,16 @@ export default {
         },
         starImg(email) {
             console.log('email:', email)
-            if (email.isStarred) return '../../../../imgs/apps/mail/starred.png'
-            else return '../../../../imgs/apps/mail/notStarred.png'
+            if (email.isStarred) return './imgs/apps/mail/starred.png'
+            else return './imgs/apps/mail/notStarred.png'
         },
         importantImg(email) {
-            if (email.isImportant) return '../../../../imgs/apps/mail/important_yellow.png'
-            else return '../../../../imgs/apps/mail/important_outline.png'
+            if (email.isImportant) return './imgs/apps/mail/important_yellow.png'
+            else return './imgs/apps/mail/important_outline.png'
         },
         checkBoxImg(email) {
-            if (email.isSelected) return '../../../../imgs/apps/mail/checkbox_selected.png'
-            else return '../../../../imgs/apps/mail/checkbox_outline.png'
+            if (email.isSelected) return './imgs/apps/mail/checkbox_selected.png'
+            else return './imgs/apps/mail/checkbox_outline.png'
         },
     },
     computed: {
