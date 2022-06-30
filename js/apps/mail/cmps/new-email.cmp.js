@@ -4,10 +4,13 @@ import { emailService } from "../services/email-service.js";
 
 export default {
     template: `
-    <input type="email" v-model="email.to" placeholder="To">
-    <input type="text" v-model="email.subject" placeholder="Subject">
-    <textarea name="" v-model="email.body" id="" cols="30" rows="10"></textarea>
-    <button @click="sendEmail">Send</button>
+    <section class="new-email-container">
+        <div class="new-msg-header">New Message</div>
+        <input type="email" id="email" v-model="email.to" placeholder="To">
+        <input type="text" v-model="email.subject" placeholder="Subject">
+        <textarea name="" v-model="email.body" id="" cols="30" rows="10"></textarea>
+        <button class="sendEmail-btn" @click="sendEmail">Send</button>
+    </section>
     <!-- <pre>{{email}}</pre> -->
 `,
     data() {
@@ -16,7 +19,7 @@ export default {
                 id: storageService.makeId(),
                 subject: '',
                 body: '',
-                sentAt: 1551133930594,
+                sentAt: null,
                 to: '',
                 name: 'Momo',
                 isRead: false,
@@ -33,6 +36,7 @@ export default {
     },
     methods: {
         sendEmail() {
+            this.email.sentAt = Date.now()
             emailService.addEmail(this.email)
             this.email = emailService.getEmptyEmail()
         }

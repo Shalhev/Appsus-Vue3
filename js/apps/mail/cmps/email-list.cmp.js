@@ -1,4 +1,6 @@
 import { emailService } from "../services/email-service.js";
+import emailPreview from "./email-preview.cmp.js";
+import { router } from "../../../router.js";
 
 export default {
     props: ["emails"],
@@ -7,15 +9,8 @@ export default {
         <table>
         <tbody>
             <tr v-for="email in emails" @click="select(email)" :class="{ notRead: !email.isRead, read: email.isRead }">
-                <router-link :to="'/mail/'+email.id">
-                <td><img :src="checkBoxImg(email)" @click="email.isSelected = !email.isSelected"/></td>
-                <td><img :src="starImg(email)" @click="email.isStarred = !email.isStarred"/></td>
-                <td><img :src="importantImg(email)" @click="email.isImportant = !email.isImportant"/></td>
-                <td class="name">{{email.name}}</td>
-                <td class="subject">{{email.subject}}<span class="body"> - {{email.body}}</span></td>
-                <td>{{email.sentAt}}</td>
-                <td><button @click.stop="binEmail(email)">X</button></td>
-            </router-link>
+                <email-preview :email="email" @changeList="changeList" @selected="select"/>
+
             </tr>
         </tbody>
         </table>
@@ -23,6 +18,7 @@ export default {
 `,
     components: {
         emailService,
+        emailPreview,
     },
     data() {
         return {
@@ -33,34 +29,15 @@ export default {
         select(email) {
             email.isRead = true
             emailService.updateEmail(email)
+            router.push(email.id)
             this.$emit("selected", email);
         },
-        binEmail(email) {
-            console.log('email removed: ', email.id)
-            if (email.isBin)
-                return emailService.removeEmail(email.id)
-                    .then(() => this.$emit("changeList"))
-            email.isBin = true
-            emailService.updateEmail(email).then(() => this.$emit("changeList"))
-        },
-        starImg(email) {
-            console.log('email:', email)
-            if (email.isStarred) return './imgs/apps/mail/starred.png'
-            else return './imgs/apps/mail/notStarred.png'
-        },
-        importantImg(email) {
-            if (email.isImportant) return './imgs/apps/mail/important_yellow.png'
-            else return './imgs/apps/mail/important_outline.png'
-        },
-        checkBoxImg(email) {
-            if (email.isSelected) return './imgs/apps/mail/checkbox_selected.png'
-            else return './imgs/apps/mail/checkbox_outline.png'
-        },
+        changeList(){
+            this.$emit("changeList");
+
+        }
     },
     computed: {
-        emailRead() {
-            const read = this.email.isRead
-            return { notRead: !read }
-        },
+
     },
 }

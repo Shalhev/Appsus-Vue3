@@ -1,0 +1,46 @@
+.new-email-container {
+    width: 500px;
+    box-shadow: 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%), 0px 5px 5px -3px rgb(0 0 0 / 20%);
+    border-top-left-radius: 3em;
+    position: fixed;
+    bottom: 0;
+    right: 4em;
+}
+
+.new-email-container .new-msg-header {
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
+    font-family: Roboto-bold;
+    padding: .625em 1em;
+    background-color: #404040;
+    color: white;
+}
+
+.new-email-container input, textarea {
+    font-family: Roboto-regular;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #eceff1;
+    padding: .625em 1em;
+
+}
+
+.new-email-container textarea:focus,
+input:focus {
+    outline: none;
+}
+
+.new-email-container textarea {
+    resize: none;
+}
+
+.new-email-container .sendEmail-btn {
+    font-family: Google-sans;
+    font-size: .875rem;
+    padding: .7em 2em;
+    margin: .625em;
+    color: white;
+    background-color: #1a73e8;
+    border-radius: .4em;
+    border: none;
+}
