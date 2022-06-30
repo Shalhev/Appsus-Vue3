@@ -12,5 +12,5 @@ a{
 }
 
 .router-link-exact-active {
-    color: dodgerblue;
+    /* color: dodgerblue; */
 }

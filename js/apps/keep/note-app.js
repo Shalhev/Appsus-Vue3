@@ -8,7 +8,8 @@ export default {
     <main class="keep-app">
         <side-bar/>
         <router-view :notes="notes" @pin="togglePin" @bin="binNote"
-        @archive="archiveNote" @save="saveNote" @update="updateNote" @delete="deleteNote" />
+        @archive="archiveNote" @save="saveNote" @update="updateNote" 
+        @delete="deleteNote" @empty-bin="emptyBin"/>
     </main>
 `
     , components: {
@@ -43,6 +44,9 @@ export default {
         deleteNote(noteId) {
             keepService.removeNote(noteId).then(notes => this.notes = notes)
         },
+        emptyBin(notes) {
+            keepService.emptyBin(notes).then(updtdNotes => this.notes = updtdNotes)
+        }
     },
     computed: {},
     mounted() {

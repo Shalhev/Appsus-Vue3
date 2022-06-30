@@ -1,6 +1,5 @@
 .keep-app {
-    display: grid;
-    grid-template-columns: 2fr 8fr;
+    display: flex;
 }
 
 button.fa {
@@ -14,7 +13,7 @@ button.fa {
 
 button.fa:hover,
 button.pinned {
-    color: #4285F4;
+    color: grey;
 }
 
 input[type="color"] {
@@ -29,16 +28,11 @@ input[type="color"]::-webkit-color-swatch {
     border-radius: 50%;
 }
 
-.keep-app .side-bar {
-    border-inline-end: 1px solid lightgrey;
-    height: 90vh;
-}
-
 .notes-list {
     display: flex;
     flex-flow: column wrap;
     gap: 2rem;
-    max-width: 90%;
+    max-width: 85%;
     margin: 0 auto;
 }
 
@@ -70,6 +64,7 @@ input[type="color"]::-webkit-color-swatch {
     padding-bottom: 1.5rem;
     border-radius: .4rem;
     min-width: 100px;
+    max-width: 450px;
 }
 
 .note img {
@@ -89,8 +84,6 @@ input[type="color"]::-webkit-color-swatch {
     border-top-left-radius: .4rem;
     border-top-right-radius: .4rem;
 }
-
-
 
 .new-note,
 .notes-top-container .shrinked-note-input {
@@ -145,30 +138,51 @@ input[type="color"]::-webkit-color-swatch {
 }
 
 /* sidebar */
+.keep-app .side-bar {
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+    background-color: white;
+}
+
+.keep-app .side-bar .router-link-exact-active {
+    border-radius: 50%;
+    background-color: #FDEFC3;
+}
+
+.keep-app .side-bar.hovered .router-link-exact-active {
+    border-radius: 0;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.keep-app .side-bar.hovered {
+    box-shadow: 0 0 6px 0px grey;
+}
+
 .side-bar-nav {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-}
-
-.side-bar-nav {
     margin-top: 1rem;
-    width: 90%;
-    margin: auto;
-    text-align: center;
 }
 
 .side-bar-nav a {
     display: flex;
     justify-content: space-between;
-    font-size: 1.2em;
+    font-size: 1.3em;
     padding: .5rem;
 }
 
 .side-bar-nav a:hover {
-    color: #4285F4;
-    outline: 1px solid gray;
-    border-radius: 1rem;
+    background-color: #F0F3F4;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.sidebar-txt {
+    padding-inline-start: 2rem;
+    padding-inline-end: 5rem;
 }
 
 .task {
@@ -221,4 +235,24 @@ input[type="color"]::-webkit-color-swatch {
 .notes-list #screen.show {
     background-color: rgba(0, 0, 0, 0.211);
     pointer-events: auto;
+}
+
+.bin-top-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.notes-top-container .empty-bin {
+    padding: .7rem 1rem;
+    background-color: transparent;
+    color: #4C8AF4;
+    border: none;
+}
+
+
+.bin-top-container .empty-bin:hover {
+    background-color: #F7FAFE;
+    ;
 }

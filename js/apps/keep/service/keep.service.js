@@ -11,6 +11,7 @@ export const keepService = {
     toggleDoneTask,
     removeTask,
     updateNote,
+    emptyBin,
 
 };
 const NOTES_KEY = 'notes';
@@ -68,7 +69,7 @@ const defaultNotes = [
         isArch: false,
         info: {
             url: "https://picsum.photos/200/300",
-            title: "Bobi and Me"
+            title: "Vacation!"
         },
         style: {
             backgroundColor: getRandomColor()
@@ -76,17 +77,18 @@ const defaultNotes = [
     },
     {
         id: "n105",
-        type: 'note-video',
+        type: "note-txt",
         isPinned: false,
         isBin: false,
         isArch: false,
         info: {
-            videoUrl: 'https://www.youtube.com/embed/4C-1Eff3X1E',
+            title: "Reminer",
+            txt: "a thing that causes someone to remember something.the watchtower is a reminder of the days when an enemy might appear at any moment"
         },
         style: {
             backgroundColor: getRandomColor()
         }
-    }
+    },
 ]
 
 _createNotes()
@@ -190,4 +192,10 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+
+function emptyBin(notes) {
+    const filterdNotes = notes.filter(note => !note.isBin)
+    storageService.save(NOTES_KEY, filterdNotes)
+    return storageService.query(NOTES_KEY)
 }
