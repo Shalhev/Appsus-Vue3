@@ -29,7 +29,7 @@ export default {
         select(email) {
             email.isRead = true
             emailService.updateEmail(email)
-            router.push(email.id)
+            // router.push('mail/'+email.id)
             this.$emit("selected", email);
         },
         changeList(){

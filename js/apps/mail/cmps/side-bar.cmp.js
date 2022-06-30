@@ -1,3 +1,5 @@
+import { router } from "../../../router.js";
+
 export default {
     template: `
     <section class="side-bar">
@@ -31,6 +33,7 @@ export default {
     methods: {
         setFilter(filter){
             this.$emit('filtered', filter)
+            router.push(`/mail/filter/${filter}`)
         },
         composeEmail(){
             this.$emit('composeEmail')

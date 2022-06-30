@@ -8,8 +8,10 @@ export default {
         <div class="new-msg-header">New Message</div>
         <input type="email" id="email" v-model="email.to" placeholder="To">
         <input type="text" v-model="email.subject" placeholder="Subject">
-        <textarea name="" v-model="email.body" id="" cols="30" rows="10"></textarea>
-        <button class="sendEmail-btn" @click="sendEmail">Send</button>
+        <textarea name="" v-model="email.body" id="" cols="30" rows="20"></textarea>
+        <div>
+            <button class="sendEmail-btn" @click="sendEmail">Send</button>
+        </div>
     </section>
     <!-- <pre>{{email}}</pre> -->
 `,
