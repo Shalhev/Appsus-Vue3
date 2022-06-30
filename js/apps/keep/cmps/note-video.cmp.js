@@ -1,12 +1,24 @@
 export default {
-template: `
-<h2>video</h2>
+    template: `
+<section class="video-note">
+    <iframe width="350" height="250" :src="videoUrl"></iframe>
+</section>
 `,
-data() {
-return {};
-},
-created() {},
-methods: {},
-computed: {},
-unmounted() {},
+    props: ['info'],
+    data() {
+        return {};
+    },
+    created() {
+    },
+    methods: {},
+    computed: {
+        videoUrl() {
+            const url = this.info.videoUrl
+            const idStart = url.indexOf('v=') + 2
+            const idEnd = idStart + 11 //yt video ids are 11 digits long
+            const videoId = url.substring(idStart, idEnd)
+            return 'https://www.youtube.com/embed/' + videoId
+        }
+    },
+    unmounted() { },
 };

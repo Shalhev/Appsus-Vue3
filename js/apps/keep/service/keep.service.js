@@ -4,19 +4,22 @@ export const keepService = {
     query,
     getEmptyNote,
     addNote,
+    removeNote,
+    togglePinNote
 };
 const NOTES_KEY = 'notes';
+const YT_KEY = 'AIzaSyDFsOEh7ELzyN6gkO-QzdyOvaamdcp1RuA'
 
 const defaultNotes = [
     {
         id: "n101",
         type: "note-txt",
-        isPinned: true,
+        isPinned: false,
         info: {
             txt: "Fullstack Me Baby!"
         },
         style: {
-            backgroundColor: "#FFFFFF"
+            backgroundColor: getRandomColor()
         }
     },
     {
@@ -28,7 +31,7 @@ const defaultNotes = [
             title: "Bobi and Me"
         },
         style: {
-            backgroundColor: "#FFFFFF"
+            backgroundColor: getRandomColor()
         }
     },
     {
@@ -43,7 +46,7 @@ const defaultNotes = [
             ],
         },
         style: {
-            backgroundColor: "#FFFFFF"
+            backgroundColor: getRandomColor()
         }
     },
 ]
@@ -75,11 +78,10 @@ function getEmptyNote() {
             todos: null,
         },
         style: {
-            backgroundColor: "#FFFFFF"
+            backgroundColor: getRandomColor()
         }
     }
 }
-
 
 function query() {
     return storageService.query(NOTES_KEY)
@@ -89,4 +91,25 @@ function addNote(note) {
     console.log('saving note...');
     return storageService.post(NOTES_KEY, note)
         .then(() => storageService.query(NOTES_KEY))
+}
+
+function removeNote(noteId) {
+    return storageService.remove(NOTES_KEY, noteId)
+        .then(() => storageService.query(NOTES_KEY))
+}
+function togglePinNote(noteId) {
+    return storageService.get(NOTES_KEY, noteId)
+        .then(note => {
+            note.isPinned = !note.isPinned
+            return storageService.put(NOTES_KEY, note)
+        }).then(() => storageService.query(NOTES_KEY))
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
