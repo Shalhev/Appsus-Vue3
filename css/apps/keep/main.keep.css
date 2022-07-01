@@ -1,5 +1,7 @@
 .keep-app {
     display: flex;
+    position: relative;
+    min-height: 95vh;
 }
 
 button.fa {
@@ -32,7 +34,7 @@ input[type="color"]::-webkit-color-swatch {
     display: flex;
     flex-flow: column wrap;
     gap: 2rem;
-    max-width: 85%;
+    width: 90%;
     margin: 0 auto;
 }
 
@@ -133,16 +135,89 @@ input[type="color"]::-webkit-color-swatch {
 
 .new-note-bottom {
     display: flex;
+    position: relative;
     padding: .5rem;
     justify-content: flex-end;
 }
 
+/* colors */
+.color-select {
+    display: flex;
+    gap: .2rem;
+    padding: .25rem;
+    border-radius: 2rem;
+    position: absolute;
+    right: 4.4rem;
+    background-color: rgba(216, 212, 212, 0.662);
+    max-width: 0;
+    opacity: 0;
+    transition: max-width .35s, opacity .55s;
+}
+
+.color-select.open {
+    max-width: 100%;
+    opacity: 1;
+}
+
+.color {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.color:hover {
+    outline: 1px solid white;
+}
+
+.color.blue {
+    background-color: #1566CC;
+}
+
+.color.yellow {
+    background-color: #FCCB01;
+}
+
+.color.red {
+    background-color: #AB2622;
+}
+
+.color.green {
+    background-color: #38AD89;
+}
+
+.color.pink {
+    background-color: #CA049A;
+}
+
+.color.orange {
+    background-color: #F89D59;
+}
+
+.color.cyan {
+    background-color: #42CCCC;
+}
+
+.color.brown {
+    background-color: #81502B;
+}
+
+
 /* sidebar */
 .keep-app .side-bar {
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     z-index: 1;
-    height: 100vh;
     background-color: white;
+    max-width: 2.3rem;
+    transition: max-width 0.5s;
+}
+
+.keep-app .side-bar.hovered {
+    box-shadow: 0 0 6px 0px grey;
+    max-width: 100%;
 }
 
 .keep-app .side-bar .router-link-exact-active {
@@ -156,9 +231,6 @@ input[type="color"]::-webkit-color-swatch {
     border-bottom-right-radius: 1rem;
 }
 
-.keep-app .side-bar.hovered {
-    box-shadow: 0 0 6px 0px grey;
-}
 
 .side-bar-nav {
     display: flex;
