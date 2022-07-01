@@ -43,8 +43,26 @@ const emails = [
         to: 'user@appsus.com',
         name: 'Michiko',
         isRead: false,
-        isStarred: true,
-        isImportant: false,
+        isStarred: false,
+        isImportant: true,
+        isDraft: false,
+        isSelected: false,
+        isBin: false,
+    },
+    {
+        id: storageService.makeId(),
+        subject: '[GitHub] Please verify your device',
+        body: `Hey Appsus!
+A sign in attempt requires further verification because we did not recognize your device. To complete the sign in, enter the verification code on the unrecognized device.
+Device: Chrome on Windows
+Verification code: 08051`,
+        sentAt: 1551133930594,
+        from: 'noreply@github.com',
+        to: 'user@appsus.com',
+        name: 'Michiko',
+        isRead: false,
+        isStarred: false,
+        isImportant: true,
         isDraft: false,
         isSelected: false,
         isBin: false,
@@ -70,7 +88,7 @@ function _saveEmails() {
     if (!localStorage.getItem(EMAILS_KEY))
         storageService.save(EMAILS_KEY, emails);
 }
-function getLoggedinUser(){
+function getLoggedinUser() {
     return loggedinUser
 }
 

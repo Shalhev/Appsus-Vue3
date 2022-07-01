@@ -6,15 +6,19 @@ export default {
     template: `
     <section class="email-preview">
         <router-link class="tr-router" :to="'/mail/'+email.id">
-        <td class="btns">
-            <span class="checkbox"><img :src="checkBoxImg(email)" @click.stop="email.isSelected = !email.isSelected"/></span>
-            <img :src="starImg(email)" @click.stop="email.isStarred = !email.isStarred"/>
-            <span class="important"><img :src="importantImg(email)" @click.stop="email.isImportant = !email.isImportant"/></span>
-        </td>
-            <td class="name">{{email.name}}</td>
-            <td class="subject">{{email.subject}}<span class="body"> - {{email.body}}</span></td>
-            <td class="date">{{showTime(email.sentAt)}}</td>
-            <td class="bin"><img src="./imgs/apps/mail/bin.png" @click.stop="binEmail(email)"></td>
+            <div class="preview-container">
+                <td class="btns">
+                    <img :src="checkBoxImg(email)" class="checkbox" @click.stop="email.isSelected = !email.isSelected"/>
+                    <img :src="starImg(email)" @click.stop="email.isStarred = !email.isStarred"/>
+                    <img :src="importantImg(email)" class="important"  @click.stop="email.isImportant = !email.isImportant"/>
+                </td>
+                <td class="name">{{email.name}}</td>
+                <td class="subject">{{email.subject}}<span class="body"> - {{email.body}}</span></td>
+            </div>
+                <div class="right-preview">
+                    <td class="date">{{showTime(email.sentAt)}}</td>
+                    <td class="bin"><img src="./imgs/apps/mail/bin.png" @click.stop="binEmail(email)"></td>
+                </div>
         </router-link>
     </section>
 `,

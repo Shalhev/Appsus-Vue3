@@ -8,7 +8,7 @@ export default {
     <section class="email-list">
         <table>
         <tbody>
-            <tr v-for="email in emails" @click="select(email)" :class="{ notRead: !email.isRead, read: email.isRead }">
+            <tr v-for="email in emails" @click.stop="select(email)" :class="{ notRead: !email.isRead, read: email.isRead }">
                 <email-preview :email="email" @changeList="changeList" @selected="select"/>
 
             </tr>
