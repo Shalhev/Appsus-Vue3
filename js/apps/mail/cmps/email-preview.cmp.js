@@ -13,8 +13,8 @@ export default {
         </td>
             <td class="name">{{email.name}}</td>
             <td class="subject">{{email.subject}}<span class="body"> - {{email.body}}</span></td>
-            <td>{{showTime(email.sentAt)}}</td>
-            <td><button @click.stop="binEmail(email)">X</button></td>
+            <td class="date">{{showTime(email.sentAt)}}</td>
+            <td class="bin"><img src="./imgs/apps/mail/bin.png" @click.stop="binEmail(email)"></td>
         </router-link>
     </section>
 `,
@@ -55,29 +55,6 @@ export default {
 
             }
         },
-        // var periods = {
-        //     month: 30 * 24 * 60 * 60 * 1000,
-        //     week: 7 * 24 * 60 * 60 * 1000,
-        //     day: 24 * 60 * 60 * 1000,
-        //     hour: 60 * 60 * 1000,
-        //     minute: 60 * 1000
-        // };
-        // var diff = Date.now() - sentAt;
-        // if (diff > periods.month) {
-        //     // it was at least a month ago
-        //     return Math.floor(diff / periods.month) + "month";
-        // } else if (diff > periods.week) {
-        //     return Math.floor(diff / periods.week) + "w";
-        // } else if (diff > periods.day) {
-        //     return Math.floor(diff / periods.day) + "d";
-        // } else if (diff > periods.hour) {
-        //     return Math.floor(diff / periods.hour) + "h";
-        // } else if (diff > periods.minute) {
-        //     return Math.floor(diff / periods.minute) + "m";
-        // }
-        // return "Just now";
-
-
     },
     computed: {
 

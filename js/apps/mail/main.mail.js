@@ -13,7 +13,6 @@ export default {
             <email-list v-else-if="emails" :emails="emailsToShow" @selected="selectEmail" @changeList="updateEmails"/>
             <new-email v-if="isCompose"/>
         </div>
-        <!-- <router-link v-if="selectedEmail" :email="selectedEmail" :to="'/mail/details/'+selectedEmail.id">hey</router-link> -->
     </section>
 `,
     components: {
@@ -62,8 +61,8 @@ export default {
         emailsToShow() {
             var emails = this.emails.sort(function (a, b) { return b.sentAt - a.sentAt });
             const filter = this.filter
-            if (!filter) return emails.filter(email => !email.isBin)
-            if (filter === 'inbox') return emails.filter(email => email.to === 'user@appsus.com')
+            if (!filter) return emails.filter(email => email.to === this.loggedinUserr.email && !email.isBin)
+            if (filter === 'inbox') return emails.filter(email => email.to === this.loggedinUserr.email && !email.isBin)
             else if (filter === 'starred') return emails.filter(email => email.isStarred && !email.isBin)
             else if (filter === 'important') return emails.filter(email => email.isImportant && !email.isBin)
             else if (filter === 'sent') return emails.filter(email => email.to !== this.loggedinUserr.email && !email.isBin)

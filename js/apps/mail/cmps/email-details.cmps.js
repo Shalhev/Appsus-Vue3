@@ -7,30 +7,37 @@ export default {
         <!-- TOP NAV HERE -->
         <header class="msg-header">
             <span class="subject">{{email.subject}}</span>
-        <span class=important><img :src="importantImg(email)"/></span>
+            <div class="btn header-important"><img :src="importantImg(email)" @click.stop="email.isImportant = !email.isImportant"/></div>
         </header>
         <div class="msg-container">
             <div class="left-side-msg">
-                <div class="user-icon">icon</div>
+                <div class="user-icon"><img src="./imgs/apps/mail/profile_icon.png"></div>
             </div>
             <div class="main-side-msg">
                 <div class="msg-info">
-                    <div class="username">Jory from Font Awesome<span class="email">&lt;jory@m.fontawesome.com&gt;</span></div>
-                    <div class="msg-time">11:11 (4 hours ago)</div>
-                    <div class="starred">{{email.isStarred}}</div>
-                    <div class="replay-btn">replay-btn</div>
+                    <div class="left">
+                        <div class="username">{{email.name}} <span class="email">&lt;{{email.to}}&gt;</span></div>
+                    </div>
+                    <div class="right">
+                        <div class="btn msg-time">{{showTime(email.sentAt)}}</div>
+                        <div class="btn starred"  @click.stop="email.isStarred = !email.isStarred"><img :src="starImg(email)"/></div>
+                        <div class="btn replay-btn"><img src="./imgs/apps/mail/replay.png"></div>
+                    </div>
                 </div>
-                <div class="msg-body">
-                    {{email.body}}
-                </div>
+                <pre class="msg-body">{{email.body}}</pre>
                 <div class="btns">
-                    <button class="replay-btn">Replay</button>
-                    <button class="forward-btn">Forward</button>
+                    <div class="replay">
+                        <img src="./imgs/apps/mail/replay.png">
+                        <span>Replay</span>
+                    </div>
+                    <div class="forward">
+                        <img src="./imgs/apps/mail/forward.png">
+                        <span>Forward</span>
+                    </div>
                 </div>
 
             </div>
         </div>
-            <pre>{{email}}</pre>
     </section>
 `,
     components: {
@@ -48,7 +55,23 @@ export default {
         importantImg(email) {
             if (email.isImportant) return './imgs/apps/mail/important_yellow.png'
             else return './imgs/apps/mail/important_outline.png'
-        }
+        },
+        starImg(email) {
+            if (email.isStarred) return './imgs/apps/mail/starred.png'
+            else return './imgs/apps/mail/notStarred.png'
+        },
+        showTime(sentAt) {
+            const diff = Date.now() - sentAt;
+            const day = 24 * 60 * 60 * 1000
+            const date = new Date(sentAt)
+
+            if (diff < day) {
+                return `${date.getHours()}:${date.getMinutes()}`
+            } else {
+                return `${date.getDate()} ${date.toLocaleString('en', { month: 'short' })}`
+
+            }
+        },
     },
     computed: {},
     watch: {

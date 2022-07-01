@@ -5,6 +5,7 @@
 .email-list table {
     width: 100%;
     /* border-collapse: collapse; */
+    font-size: 0.875em;
 }
 
 .email-list table td {
@@ -33,6 +34,15 @@
 
 .email-list tr:hover .btns {
     opacity: 1;
+}
+.email-list tr:hover td.date{
+    display: none;
+}
+.email-list td.bin{
+    display: none;
+}
+.email-list tr:hover td.bin{
+    display: inline;
 }
 
 
