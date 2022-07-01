@@ -11,12 +11,13 @@ export default {
                 <input type="text" placeholder=" Title" v-model="note.info.title">
                 <input type="text" placeholder="Enter image url..." v-model="note.info.url">
             </div>
-            <div v-if="note.type==='note-todos'" class="new-note-inputs">
-                <input type="text" placeholder="Enter todos title" v-model="note.info.label">
-                <input type="text" placeholder="tasks separated by ','" v-model="note.info.todos">
-            </div>
             <div v-if="note.type==='note-video'" class="new-note-inputs">
                 <input type="text" placeholder="Enter video url..." v-model="note.info.videoUrl">
+            </div>
+            <div v-if="note.type ==='note-todos'" class="new-note-inputs">
+                <input type="text" placeholder="Enter todos title" v-model="note.info.title">
+                <input v-for="(task,idx) in tasks" v-model="tasks[idx]" type="text"
+                 placeholder="enter task..." @click="addTask(idx)">
             </div>
 
             <div v-if="!editedNote" class="note-type-select">
@@ -48,31 +49,35 @@ export default {
         return {
             note: null,
             colorSelect: false,
+            tasks: ['']
         };
     },
     created() {
         if (this.editedNote) {
             this.note = this.editedNote
-            if (this.note.type === 'note-todos') this.formatLoadTodos()
+            this.tasks = this.loadTodos()
         }
         else this.note = keepService.getEmptyNote()
     },
     methods: {
+        addTask(idx) {
+            if (idx === this.tasks.length - 1) this.tasks.push('')
+        },
         toggleColor() {
             this.colorSelect = !this.colorSelect
         },
-        formatSaveTodos(todosStr) {
-            const tasks = todosStr.split(',')
-            this.note.info.todos = tasks.map(task => {
-                return { txt: task, isDone: false }
+        formatTodos() {
+            this.note.info.todos = this.tasks.map(task => {
+                if (!task) return ' '
+                return { txt: task.trim(), isDone: false }
             })
         },
-        formatLoadTodos() {
-            this.note.info.todos = this.note.info.todos.map(task => task.txt).join(',')
+        loadTodos() {
+            return this.note.info.todos.map(noteObj => noteObj.txt)
         },
         save() {
-            if (this.note.info.txt || this.note.info.url || this.note.info.videoUrl || this.note.info.label) {
-                if (this.note.type === 'note-todos') this.formatSaveTodos(this.note.info.todos)
+            if (this.note.info.txt || this.note.info.url || this.note.info.videoUrl || this.note.info.title) {
+                if (this.note.type === 'note-todos') this.formatTodos()
                 this.editedNote ? this.$emit('update-note', this.note) : this.$emit('save-note', this.note)
                 this.note = keepService.getEmptyNote()
             }
@@ -83,7 +88,7 @@ export default {
         setColor(color) {
             this.note.style.backgroundColor = color
             this.toggleColor()
-        }
+        },
     },
     computed: {},
     mounted() {

@@ -71,7 +71,7 @@ export default {
             this.$emit('archive', noteId)
         },
         saveNote(note) {
-            console.log('saving note',note);
+            console.log('saving note', note);
             this.noteTaking = false
             this.$emit('save', note)
         },
@@ -81,11 +81,14 @@ export default {
         },
     },
     computed: {
+        displayNotes() {
+            return this.notes.filter(note => !note.isBin && !note.isArch)
+        },
         pinnedNotes() {
-            return this.notes.filter(note => note.isPinned)
+            return this.displayNotes.filter(note => note.isPinned)
         },
         otherNotes() {
-            return this.notes.filter(note => !note.isPinned)
+            return this.displayNotes.filter(note => !note.isPinned)
         },
     },
     unmounted() { },
