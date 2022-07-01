@@ -3,7 +3,7 @@ import { keepService } from "../service/keep.service.js";
 export default {
     template: `
 <article class="note-todos" >
-    <h2>{{note.info.label}}</h2>
+    <h2 @blur="updateNote" ref="title" contentEditable="true" spellcheck="false">  {{note.info.title}}</h2>
     <ul class="tasks-list">
         <li v-for="(task,idx) in tasks">
             <div class="task">
@@ -27,8 +27,12 @@ export default {
         markAsDone(noteId, taskIdx) {
             keepService.toggleDoneTask(noteId, taskIdx).then(note => this.tasks = note.info.todos)
         },
-        removeTask(noteId,taskIdx){
+        removeTask(noteId, taskIdx) {
             keepService.removeTask(noteId, taskIdx).then(note => this.tasks = note.info.todos)
+        },
+        updateNote() {
+            this.note.info.title = this.$refs.title.innerText
+            this.$emit('update-note', this.note)
         }
     },
     computed: {},

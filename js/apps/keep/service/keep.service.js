@@ -51,7 +51,7 @@ const defaultNotes = [
         isBin: false,
         isArch: false,
         info: {
-            label: "Get my stuff together",
+            title: "Get my stuff together",
             todos: [
                 { txt: "Driving liscence", isDone: false },
                 { txt: "Coding power", isDone: false }

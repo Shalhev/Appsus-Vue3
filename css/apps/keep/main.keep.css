@@ -15,7 +15,7 @@ button.fa {
 
 button.fa:hover,
 button.pinned {
-    color: grey;
+    color: #1566CC;
 }
 
 input[type="color"] {
@@ -328,3 +328,21 @@ input[type="color"]::-webkit-color-swatch {
     background-color: #F7FAFE;
     ;
 }
+
+.pinned-seperator {
+    width: 100%;
+    height: 1rem;
+    margin: 1rem auto;
+    font-size: 1.2em;
+    opacity: .6;
+}
+
+[contenteditable] {
+    outline: 0px solid transparent;
+    transition: padding .5s;
+  }
+
+  [contenteditable]:focus {
+    background-color: #f7fafe79;
+    padding: .3rem
+  }

@@ -6,18 +6,37 @@ import noteVideo from '../cmps/note-video.cmp.js'
 
 export default {
     template: `
- <section class="notes-list">
+<section class="notes-list">
     <div id="screen" :class="{show:noteToEdit!==null}" @click="noteToEdit=null"></div>
     <div class="notes-top-container">
         <new-note v-if="noteTaking" @save-note="saveNote" />
         <input v-else type="text" class="shrinked-note-input" placeholder="Take a note..." @click="noteTaking=true">
     </div>
-    <div class="notes-container" @click="noteTaking=false">
-    <new-note v-if="noteToEdit" :editedNote="noteToEdit" @save-note="saveNote" @update-note="updateNote" 
-                class="edit-modal"/>
-        <article v-if="notes" v-for="note, in orderedNotes" :key="note.id" class="note-container"
+    <div v-if="notes" class="notes-container" @click="noteTaking=false">
+        <new-note v-if="noteToEdit" :editedNote="noteToEdit" @save-note="saveNote" @update-note="updateNote"
+            class="edit-modal" />
+
+        <article v-show="pinnedNotes" v-for="note, in pinnedNotes" :key="note.id" class="note-container"
             @mouseover="note.isEdit=true" @mouseleave="note.isEdit=false">
-            <component :is="note.type" class="note" :style="note.style" :note="note"></component>
+            <component :is="note.type" class="note pinned" :style="note.style" :note="note" @update-note="updateNote"/>
+            <div v-if="note.isEdit" class="note-edit">
+                <button @click="togglePin(note.id)" class="fa" title="pin/unpin"
+                    :class="{pinned:note.isPinned}">&#xf08d;</button>
+                <button @click="noteToEdit=note" class="fa" title="edit">&#xf044;</button>
+                <button @click="archiveNote(note.id)" class="fa" title="archive">&#xf187;</button>
+                <button @click="binNote(note.id)" class="fa" title="move to bin">&#xf014;</button>
+            </div>
+        </article>
+
+        <div v-show="pinnedNotes.length" class="pinned-seperator">
+            <span class="fa">&#xf08d;</span> pinned
+            <hr>
+            other
+        </div>
+
+        <article v-if="otherNotes" v-for="note, in otherNotes" :key="note.id" class="note-container"
+            @mouseover="note.isEdit=true" @mouseleave="note.isEdit=false">
+            <component :is="note.type" class="note" :style="note.style" :note="note" @update-note="updateNote" />
             <div v-if="note.isEdit" class="note-edit">
                 <button @click="togglePin(note.id)" class="fa" title="pin/unpin"
                     :class="{pinned:note.isPinned}">&#xf08d;</button>
@@ -52,6 +71,7 @@ export default {
             this.$emit('archive', noteId)
         },
         saveNote(note) {
+            console.log('saving note',note);
             this.noteTaking = false
             this.$emit('save', note)
         },
@@ -61,15 +81,12 @@ export default {
         },
     },
     computed: {
-        orderedNotes() {
-            const pinned = []
-            const notPinned = []
-            this.notes.forEach(note => {
-                if (note.isBin || note.isArch) return
-                note.isPinned ? pinned.push(note) : notPinned.push(note)
-            })
-            return [...pinned, ...notPinned]
-        }
+        pinnedNotes() {
+            return this.notes.filter(note => note.isPinned)
+        },
+        otherNotes() {
+            return this.notes.filter(note => !note.isPinned)
+        },
     },
     unmounted() { },
 };
