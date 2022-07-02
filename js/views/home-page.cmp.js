@@ -31,7 +31,7 @@ export default {
         </div>
 
         <div class="about">
-            <h2>About Us</h2>
+            <h2>Team</h2>
             <div class="about-container">
                 <div class="person">
                     <img src="./imgs/home/shalhev.png" alt="Shalhev">
@@ -48,7 +48,7 @@ export default {
 
                 <div class="person">
                     <img class="yuval" src="./imgs/home/yuval.jpg" alt="Yuval">
-                    <h2 class="name">Shalhev Nagauker</h2>
+                    <h2 class="name">Yuval Rubin</h2>
                     <b class="title">Head of Coffee</b>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>

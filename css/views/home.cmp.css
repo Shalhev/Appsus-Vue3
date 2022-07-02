@@ -94,6 +94,15 @@
     width: 200px;
     border-radius: 50%;
 }
+.person h2 {
+    padding: .5em 0 .3em;
+}
+.person p {
+    margin: .5em;
+}
+.person p:last-of-type {
+    margin-bottom: 1.5em;
+}
 
 .person .title {
     color: #4285F4;
