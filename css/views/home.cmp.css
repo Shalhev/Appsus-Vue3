@@ -69,12 +69,13 @@
 .home-page .about {
     text-align: center;
     background-color: #F2F2F2;
-    padding: 1.7em 0;
+    padding: 1.7em 0 2em;
     box-shadow: inset 0px 2px 20px 0px rgb(0 0 0 / 20%);
 }
 
 .home-page .about h2 {
     font-size: 2em;
+    margin: 0;
 }
 
 .home-page .about .person h2 {
