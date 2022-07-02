@@ -19,7 +19,6 @@ export default {
     data() {
         return {
             tasks: this.note.info.todos,
-            componentKey: 0,
         };
     },
     created() {

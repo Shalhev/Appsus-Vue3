@@ -67,6 +67,7 @@ export default {
     methods: {
         togglePin(noteId) {
             this.$emit('pin', noteId)
+            console.log(JSON.stringify(this.notes))
         },
         binNote(noteId) {
             this.$emit('bin', noteId)
@@ -75,7 +76,6 @@ export default {
             this.$emit('archive', noteId)
         },
         saveNote(note) {
-            console.log('saving note', note);
             this.noteTaking = false
             this.$emit('save', note)
         },

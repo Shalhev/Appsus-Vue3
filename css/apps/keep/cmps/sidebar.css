@@ -1,10 +1,10 @@
 
 .keep-app .side-bar {
+    height: 100%;
     font-size: .9rem;
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
     z-index: 1;
     background-color: white;
     max-width: 2.3rem;

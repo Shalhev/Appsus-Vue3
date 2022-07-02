@@ -9,7 +9,7 @@ export default {
         <side-bar/>
         <router-view :notes="notes" @pin="togglePin" @bin="binNote"
         @archive="archiveNote" @save="saveNote" @update="updateNote" 
-        @delete="deleteNote" @empty-bin="emptyBin" :key='gKey'/>
+        @delete="deleteNote" @empty-bin="emptyBin" :key='cmpKey'/>
     </main>
 `
     , components: {
@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             notes: null,
-            gKey: 0,
+            cmpKey: 0,
         };
     },
     created() {
@@ -41,7 +41,7 @@ export default {
         },
         updateNote(note) {
             keepService.updateNote(note).then(notes => this.notes = notes)
-            this.gKey++
+            this.cmpKey++
         },
         deleteNote(noteId) {
             keepService.removeNote(noteId).then(notes => this.notes = notes)

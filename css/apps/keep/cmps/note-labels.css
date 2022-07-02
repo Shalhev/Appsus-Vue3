@@ -22,13 +22,13 @@
 }
 
 .labels-container li .add-label {
-    color: green;
+    color: rgba(0, 128, 0, 0.625);
     padding: .135rem;
     font-size: 1.35em;
 }
 
 .labels-container li .remove-label {
-    color: rgb(211, 16, 16);
+    color: rgba(211, 16, 16, 0.631);
     padding: .1rem;
 }
 

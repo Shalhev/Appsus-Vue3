@@ -10,6 +10,6 @@
 .keep-app {
     display: flex;
     position: relative;
-    min-height: 95vh;
+    min-height: calc(100vh - 4em);
     color: #202123;
 }

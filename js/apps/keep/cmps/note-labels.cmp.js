@@ -8,7 +8,7 @@ export default {
             </li>
         </ul>
         <div v-show="adding" class="add-label-modal">
-            <input ref="labelModal" type="text" maxlength="10" placeholder="enter label" @blur="saveLabel($event)">
+            <input ref="labelModal" type="text" maxlength="20" placeholder="enter label" @blur="saveLabel($event)">
         </div>
 `, props: ['note'],
     emits: ['update-note', 'filter-by-label'],
