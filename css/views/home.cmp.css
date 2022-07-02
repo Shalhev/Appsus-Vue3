@@ -1,0 +1,140 @@
+.home-page {
+    color: #202123;
+    font-family: Google-sans;
+}
+
+.main-layout {
+    padding: 0 2rem;
+}
+
+.home-page .hero h2 {
+    font-size: 5em;
+    margin: 0 auto;
+}
+
+.hero {
+    background-image: url('../../imgs/home/homePage-hero.png');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 8em 0;
+}
+
+/* cards */
+.home-page .cards {
+    padding: 3.5em 1.5em;
+    display: flex;
+    gap: 7em;
+    justify-content: center;
+}
+
+.home-page .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 300px;
+    text-align: center;
+}
+
+.home-page .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.home-page .container {
+    padding: 2px 16px;
+}
+
+/* button */
+.home-page .app-btn {
+    font-family: Google-sans;
+    font-size: 1.3em;
+    cursor: pointer;
+    color: #fff;
+    margin-bottom: .7em;
+    border: none;
+    width: 100%;
+    background-color: #698df6;
+    background-image: linear-gradient(180deg, #698df6 0%, #5f81f6 100%);
+    border-radius: 3px;
+    line-height: 33px;
+    padding: 10px 50px;
+}
+
+.home-page .app-btn:hover {
+    background-image: linear-gradient(0deg, #698df6 0%, #5f81f6 100%);
+}
+
+/* about */
+
+.home-page .about {
+    text-align: center;
+    background-color: #F2F2F2;
+    padding: 1.7em 0;
+}
+
+.home-page .about h2 {
+    font-size: 2em;
+}
+
+.home-page .about .person h2 {
+    font-size: 1.6em;
+}
+
+.about-container {
+    padding: 0 1em;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    gap: 5em;
+}
+
+.person img {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.person img.yuval {
+    
+}
+
+.person .title {
+    color: #4285F4;
+}
+
+.person .social-links {
+    cursor: pointer;
+    font-size: 2em;
+    display: flex;
+    gap: .5em;
+    justify-content: center;
+}
+
+.person .social-links a {
+    color: #a2a3a6;
+}
+
+.person .social-links .linkedin:hover {
+    color: #1563BC;
+}
+
+.person .social-links .github:hover {
+    color: #181C1E;
+
+}
+
+.person .social-links .facebook:hover {
+    color: #356DB9;
+}
+
+/* footer */
+
+.home-page footer {
+    background-image: url('../../imgs/home/homePage-hero.png');
+    background-size: cover;
+    background-position: bottom;
+    text-align: center;
+    padding: .7em 0;
+}
+
+.home-page footer p {
+    margin: 0 auto;
+}
