@@ -24,12 +24,8 @@
     border-top: 1px solid #eceff1;
 }
 
-.email-list tr:hover {
-    cursor: pointer;
-    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
-}
 .email-list .btns {
-    opacity: 0.54;
+    /* opacity: 0.54; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,67 +33,115 @@
     margin: 0 .5em;
 }
 
-.email-list tr:hover .btns {
+.email-list tr:hover {
+    cursor: pointer;
+    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    z-index: 2;
+}
+
+.email-list .btns img {
+    opacity: 0.30;
+}
+
+.email-list tr:hover .btns img {
+    opacity: 0.54;
+}
+
+.email-list tr:hover .btns img:hover {
     opacity: 1;
 }
-.email-list tr:hover td.date{
+
+.email-list td.btns-right {
+    display: none;
+    opacity: 0.54;
+}
+
+.email-list tr:hover td.btns-right {
+    display: flex;
+}
+
+.email-list tr:hover td.date {
     display: none;
 }
-.email-list td.bin{
-    display: none;
+
+.email-list td.btns-right img {
+    margin-inline-end: 1em;
 }
-.email-list tr:hover td.bin{
-    display: inline;
+
+.email-list .important {
+    opacity: 1;
 }
 
 
 .email-list .notRead {
     font-family: Roboto-bold;
     background-color: #fff;
-
 }
 
 .email-list .read {
     background-color: rgb(242 245 245 / 80%);
 }
 
-
-
-
 .email-list span.body {
     font-family: Roboto-regular;
     color: #5f6368;
-
 }
+
+.email-list td.subject {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 700px;
+}
+
 
 
 .email-list table .name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     width: 10em;
+    margin-inline-end: 2em;
 }
-.email-preview{
+
+.email-preview {
     width: 100%;
 }
 
-.email-preview .preview-container{
+.email-preview .preview-container {
     /* justify-content: space-between; */
     width: 100%;
     display: flex;
-    justify-content: s;
     align-items: center;
     flex-direction: row;
     height: 100%;
     min-height: 2em;
 
 }
-.email-preview .tr-router{
+
+.email-preview .tr-router {
     display: flex;
     height: 100%;
     padding: 10px 0;
 }
 
-.email-preview .right-preview{
+.email-preview .right-preview {
     min-width: 5em;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.email-preview .selected {
+    background-color: #c2dbff;
+}
+
+.email-preview .selected img {
+    opacity: 0.70;
+
+}
+
+.email-preview .important:before {
+    opacity: 1;
+
 }

@@ -17,6 +17,14 @@
     padding: .625em 1em;
     background-color: #404040;
     color: #fcfcfc;
+    width: 100%;
+}
+.new-email-container span.close{
+    position: absolute;
+    right: 1em;
+    cursor: pointer;
+    color: #b3b3b3;
+    font-family: Google-sans;
 }
 
 .new-email-container input, textarea {
@@ -48,4 +56,7 @@ input:focus {
     border-radius: .4em;
     border: none;
     cursor: pointer;
+}
+.send-container{
+    background-color: #fff;
 }

@@ -1,13 +1,15 @@
 import { router } from "../../../router.js";
 
 export default {
+    props: ["unReadCount"],
     template: `
     <section class="side-bar">
             <button class="btn-compose" @click="composeEmail">
                 <span class="compose">Compose</span></button>
             <div class="btn btn-inbox" @click="setFilter('inbox')">
                 <span class="btn-img img"></span>
-                <span class="inbox">Inbox</span></div>
+                <span class="inbox">Inbox</span>
+                <span class="unread-count">{{unReadCount}}</span></div>
             <div class="btn btn-starred" @click="setFilter('starred')">
                 <span class="btn-img img"></span>
                 <span class="starred">Starred</span></div>
@@ -36,9 +38,14 @@ export default {
             router.push(`/mail/filter/${filter}`)
         },
         composeEmail(){
+            console.log('close');
             this.$emit('composeEmail')
-        }
+        },
     },
-    computed: {},
-    unmounted() { },
+    computed: {
+
+    },
+    unmounted() { 
+        
+    },
 };

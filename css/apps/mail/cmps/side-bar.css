@@ -1,6 +1,5 @@
 /* side-bar */
 .mail-container .side-bar {
-    width: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -43,7 +42,14 @@
     border-top-right-radius: 3.125em;
     border-bottom-right-radius: 3.125em;
     background-color: #fce8e6;
+    position: relative;
+}
 
+.unread-count {
+    position: absolute;
+    right: 1em;
+    color: #d93025;
+    font-family: Roboto-bold;
 }
 
 .btn-inbox .img {

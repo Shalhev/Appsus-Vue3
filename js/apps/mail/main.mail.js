@@ -7,11 +7,11 @@ import sideBar from "./cmps/side-bar.cmp.js";
 export default {
     template: `
     <section class="mail-container">
-        <side-bar @filtered="setFilter" @composeEmail="composeEmail"/>
+        <side-bar @filtered="setFilter" :unReadCount="unReadCount" @composeEmail="composeEmail"/>
         <div class="mail-box">
             <email-details v-if="selectedEmail"/>
             <email-list v-else-if="emails" :emails="emailsToShow" @selected="selectEmail" @changeList="updateEmails"/>
-            <new-email v-if="isCompose"/>
+            <new-email v-if="isCompose" @closedCompose="closeCompose"/>
         </div>
     </section>
 `,
@@ -27,13 +27,17 @@ export default {
             selectedEmail: null,
             isCompose: false,
             filter: null,
-            loggedinUserr: null
+            loggedinUserr: null,
+            unReadCount: null,
 
         };
     },
     created() {
         this.loggedinUserr = emailService.getLoggedinUser()
-        emailService.query().then(emails => this.emails = emails)
+        emailService.query().then(emails => {
+            this.emails = emails
+            this.unReadCount = this.emails.filter(email => !email.isRead && !email.isBin).length - 1
+        })
         this.filter = this.$route.params.filter
         const { emailId } = this.$route.params
         if (!this.$route.params.emailId) return
@@ -44,6 +48,7 @@ export default {
     methods: {
         selectEmail(email) {
             this.selectedEmail = email
+            this.updateEmails()
         },
         composeEmail() {
             this.isCompose = true
@@ -53,9 +58,14 @@ export default {
             this.selectedEmail = null
         },
         updateEmails() {
-            emailService.query().then(emails => this.emails = emails)
-        }
-
+            emailService.query().then(emails => {
+                this.emails = emails
+                this.unReadCount = this.emails.filter(email => !email.isRead && !email.isBin).length - 1
+            })
+        },
+        closeCompose() {
+            this.isCompose = false
+        },
     },
     computed: {
         emailsToShow() {
@@ -68,7 +78,8 @@ export default {
             else if (filter === 'sent') return emails.filter(email => email.to !== this.loggedinUserr.email && !email.isBin)
             else if (filter === 'draft') return emails.filter(email => email.isDraft && !email.isBin)
             else if (filter === 'bin') return emails.filter(email => email.isBin)
-        }
+        },
+
     },
     unmounted() { },
 };

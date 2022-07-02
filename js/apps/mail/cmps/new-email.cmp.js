@@ -5,11 +5,11 @@ import { emailService } from "../services/email-service.js";
 export default {
     template: `
     <section class="new-email-container">
-        <div class="new-msg-header">New Message</div>
+        <div class="new-msg-header">New Message<span class="close" @click="closeCompose">X</span></div>
         <input type="email" id="email" v-model="email.to" placeholder="To">
         <input type="text" v-model="email.subject" placeholder="Subject">
         <textarea name="" v-model="email.body" id="" cols="30" rows="20"></textarea>
-        <div>
+        <div class="send-container">
             <button class="sendEmail-btn" @click="sendEmail">Send</button>
         </div>
     </section>
@@ -43,6 +43,9 @@ export default {
             this.email.sentAt = Date.now()
             emailService.addEmail(this.email)
             this.email = emailService.getEmptyEmail()
+        },
+        closeCompose(){
+            this.$emit('closedCompose')
         }
     },
     computed: {},

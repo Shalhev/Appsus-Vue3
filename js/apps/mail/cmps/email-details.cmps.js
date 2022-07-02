@@ -16,26 +16,25 @@ export default {
             <div class="main-side-msg">
                 <div class="msg-info">
                     <div class="left">
-                        <div class="username">{{email.name}} <span class="email">&lt;{{email.to}}&gt;</span></div>
+                        <div class="username">{{email.name}} <span class="email">&lt;{{email.from}}&gt;</span></div>
                     </div>
                     <div class="right">
                         <div class="btn msg-time">{{showTime(email.sentAt)}}</div>
                         <div class="btn starred"  @click.stop="email.isStarred = !email.isStarred"><img :src="starImg(email)"/></div>
-                        <div class="btn replay-btn"><img src="./imgs/apps/mail/replay.png"></div>
+                        <div class="btn reply-btn"><img src="./imgs/apps/mail/reply.png"></div>
                     </div>
                 </div>
                 <pre class="msg-body">{{email.body}}</pre>
                 <div class="btns">
-                    <div class="replay">
-                        <img src="./imgs/apps/mail/replay.png">
-                        <span>Replay</span>
+                    <div class="reply">
+                        <img src="./imgs/apps/mail/reply.png">
+                        <span>Reply</span>
                     </div>
                     <div class="forward">
                         <img src="./imgs/apps/mail/forward.png">
                         <span>Forward</span>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

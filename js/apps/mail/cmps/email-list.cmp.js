@@ -8,7 +8,7 @@ export default {
     <section class="email-list">
         <table>
         <tbody>
-            <tr v-for="email in emails" @click.stop="select(email)" :class="{ notRead: !email.isRead, read: email.isRead }">
+            <tr v-for="email in emails" @click="select(email)" :class="{ notRead: !email.isRead, read: email.isRead }">
                 <email-preview :email="email" @changeList="changeList" @selected="select"/>
 
             </tr>
@@ -28,9 +28,10 @@ export default {
     methods: {
         select(email) {
             email.isRead = true
-            emailService.updateEmail(email)
+            emailService.updateEmail(email).then(() => this.$emit("selected", email))
+            // emailService.updateEmail(email)
             // router.push('mail/'+email.id)
-            this.$emit("selected", email);
+            // this.$emit("selected", email);
         },
         changeList(){
             this.$emit("changeList");

@@ -5,7 +5,7 @@ export default {
     props: ['email'],
     template: `
     <section class="email-preview">
-        <router-link class="tr-router" :to="'/mail/'+email.id">
+        <router-link class="tr-router" :to="'/mail/'+email.id" :class="{ selected: email.isSelected }">
             <div class="preview-container">
                 <td class="btns">
                     <img :src="checkBoxImg(email)" class="checkbox" @click.stop="email.isSelected = !email.isSelected"/>
@@ -17,10 +17,13 @@ export default {
             </div>
                 <div class="right-preview">
                     <td class="date">{{showTime(email.sentAt)}}</td>
-                    <td class="bin"><img src="./imgs/apps/mail/bin.png" @click.stop="binEmail(email)"></td>
+                    <td class="btns-right">
+                        <img class="read-btn" src="./imgs/apps/mail/mark_read.png" @click.stop="binEmail(email)"/>
+                        <img class="bin-btn" src="./imgs/apps/mail/bin.png" @click.stop="binEmail(email)"/>
+                    </td>
                 </div>
-        </router-link>
-    </section>
+            </router-link>
+        </section>
 `,
     data() {
         return {};
@@ -28,7 +31,6 @@ export default {
     created() { },
     methods: {
         binEmail(email) {
-            console.log('email removed: ', email.id)
             if (email.isBin)
                 return emailService.removeEmail(email.id)
                     .then(() => this.$emit("changeList"))
@@ -59,6 +61,10 @@ export default {
 
             }
         },
+        changeList() {
+            console.log('emited');
+            this.$emit("changeList")
+        }
     },
     computed: {
 
