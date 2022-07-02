@@ -1,14 +1,14 @@
 .app-header {
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid black;
     align-items: center;
-    height: 5vh;
+    height: 4em;
+    margin: 0 2em;
 }
 
 .app-header .logo {
     font-size: 2em;
     font-family: Roboto-bold;
+    margin-inline-end: 1em;
 }
 
 .app-header .logo-blue {
@@ -25,4 +25,30 @@
 
 .app-header .logo-green {
     color: #34A853;
+}
+
+.app-header .nav-bar {
+    font-family: Google-sans;
+    font-size: 1.1em;
+}
+
+.app-header .nav-bar ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.app-header .nav-bar a {
+    color: #5f6368;
+    padding: 1.05em
+}
+.app-header .nav-bar a:hover {
+    background-color: #f8f9fa;
+}
+
+.router-link-exact-active{
+    border-bottom: 3px solid #1a73e8;
 }
