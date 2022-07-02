@@ -1,0 +1,17 @@
+.notes-top-container .empty-bin {
+    padding: .7rem 1rem;
+    background-color: transparent;
+    color: #4C8AF4;
+    border: none;
+}
+
+.bin-top-container .empty-bin:hover {
+    background-color: #F7FAFE;
+}
+
+.bin-top-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}

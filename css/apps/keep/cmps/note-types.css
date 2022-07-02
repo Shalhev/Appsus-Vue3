@@ -1,0 +1,30 @@
+.task {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: .3rem;
+}
+
+.crossed {
+    text-decoration: line-through;
+    opacity: .65;
+}
+
+.task-txt {
+    cursor: pointer;
+}
+
+.remove-task:hover {
+    color: lightgrey;
+    cursor: pointer;
+}
+
+[contenteditable] {
+    outline: none;
+    transition: padding .3s;
+}
+
+[contenteditable]:focus {
+    background-color: #f7fafe79;
+    padding: .5rem
+}

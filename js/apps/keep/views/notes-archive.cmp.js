@@ -3,6 +3,7 @@ import noteImg from '../cmps/note-img.cmp.js'
 import noteTodos from '../cmps/note-todos.cmp.js'
 import noteTxt from '../cmps/note-txt.cmp.js'
 import noteVideo from '../cmps/note-video.cmp.js'
+import noteBtns from '../cmps/note-btns.cmp.js'
 
 export default {
     template: `
@@ -13,19 +14,14 @@ export default {
             <div class="notes-container">
                 <div v-if="notes" v-for="note in archNotes" :key="note.id" class="note-container">
                         <component :is="note.type" class="note"
-                        :style="note.style"
-                        :note="note">
-                    </component>
-                    <div class="note-edit">
-                        <button @click="unarchNote(note.id)" title="restore" class="fa">&#xf0c7;</button>
-                        <button @click="deleteNote(note.id)" title="delete forever" class="fa">&#xf00d;</button>
-                    </div>
+                        :style="note.style" :note="note" @update-note="updateNote"> </component>
+                        <note-btns :note="note"  @bin-note="binNote" @archive-note="unarchNote" />
                 </div>
             </div>
     </section>
 `, props: ['notes'],
     components: {
-        newNote, noteImg, noteTodos, noteVideo, noteTxt
+        newNote, noteImg, noteTodos, noteVideo, noteTxt, noteBtns
     },
     data() {
         return {};
@@ -36,8 +32,11 @@ export default {
         unarchNote(noteId) {
             this.$emit('archive', noteId)
         },
-        deleteNote(noteId) {
-            this.$emit('delete', noteId)
+        binNote(noteId) {
+            this.$emit('bin', noteId)
+        },
+        updateNote(note) {
+            this.$emit('update', note)
         }
     },
     computed: {

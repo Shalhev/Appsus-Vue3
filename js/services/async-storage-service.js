@@ -7,6 +7,7 @@ export const storageService = {
     postMany,
     save,
     makeId,
+    unshift
 }
 
 // gets all the items
@@ -27,6 +28,16 @@ function post(entityType, newEntity) {
     return query(entityType)
         .then(entities => {
             entities.push(newEntity);
+            save(entityType, entities)
+            return newEntity;
+        })
+}
+
+function unshift(entityType, newEntity) {
+    newEntity.id = makeId()
+    return query(entityType)
+        .then(entities => {
+            entities.unshift(newEntity);
             save(entityType, entities)
             return newEntity;
         })

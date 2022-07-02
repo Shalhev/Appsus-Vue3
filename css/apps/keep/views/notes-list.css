@@ -1,0 +1,102 @@
+.notes-list {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 2rem;
+    padding: 2.5rem;
+    margin: 0 auto;
+}
+
+.notes-top-container {
+    width: 100%;
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+}
+
+.notes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.note-container {
+    position: relative;
+    display: flex;
+    border: none;
+}
+
+.note {
+    border: 1px solid lightgrey;
+    text-align: center;
+    padding-bottom: 2.5rem;
+    border-radius: .4rem;
+    min-width: 6.875rem;
+    max-width: 28rem;
+}
+
+.note p,
+.note h2 {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.note img {
+    border-top-left-radius: .4rem;
+    border-top-right-radius: .4rem;
+    width: 100%;
+}
+
+.note-edit {
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2.2rem;
+    background-color: rgba(255, 255, 255, 0.559);
+    border-top-left-radius: .4rem;
+    border-top-right-radius: .4rem;
+}
+
+.notes-list input {
+    padding: .2rem;
+    font-size: 1.2rem;
+    border: none;
+    background-color: inherit;
+}
+
+.notes-top-container input:focus {
+    outline: none;
+}
+
+.notes-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.notes-list ul li {
+    border-bottom: 1px solid #3333;
+}
+
+.pinned-seperator {
+    width: 100%;
+    height: 3.5rem;
+    margin: 1rem auto;
+    font-size: 1.2em;
+    opacity: .6;
+}
+
+.notes-list #screen {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.notes-list #screen.show {
+    background-color: rgba(0, 0, 0, 0.211);
+    pointer-events: auto;
+}

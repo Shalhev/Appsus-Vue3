@@ -18,7 +18,8 @@ export default {
     props: ['note'],
     data() {
         return {
-            tasks: this.note.info.todos
+            tasks: this.note.info.todos,
+            componentKey: 0,
         };
     },
     created() {

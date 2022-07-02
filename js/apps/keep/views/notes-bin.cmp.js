@@ -3,6 +3,7 @@ import noteImg from '../cmps/note-img.cmp.js'
 import noteTodos from '../cmps/note-todos.cmp.js'
 import noteTxt from '../cmps/note-txt.cmp.js'
 import noteVideo from '../cmps/note-video.cmp.js'
+import noteBtns from '../cmps/note-btns.cmp.js'
 
 export default {
     template: `
@@ -13,20 +14,16 @@ export default {
             </div>
             <div class="notes-container">
                 <div v-if="notes" v-for="note in binnedNotes" :key="note.id" class="note-container">
-                        <component :is="note.type" class="note"
-                        :style="note.style"
-                        :note="note">
+                        <component :is="note.type" class="note" :style="note.style"
+                        :note="note" @update-note="updateNote">
                     </component>
-                    <div class="note-edit">
-                        <button @click="unbinNote(note.id)" title="restore" class="fa">&#xf0c7;</button>
-                        <button @click="deleteNote(note.id)" title="delete forever" class="fa">&#xf00d;</button>
-                    </div>
+                    <note-btns :note="note"  @bin-note="unbinNote" @delete-note="deleteNote" />
                 </div>
             </div>
     </section>
 `, props: ['notes'],
     components: {
-        newNote, noteImg, noteTodos, noteVideo, noteTxt
+        newNote, noteImg, noteTodos, noteVideo, noteTxt, noteBtns
     },
     data() {
         return {};
@@ -42,6 +39,9 @@ export default {
         },
         emptyBin() {
             this.$emit('empty-bin', this.notes)
+        },
+        updateNote(note) {
+            this.$emit('update', note)
         }
     },
     computed: {

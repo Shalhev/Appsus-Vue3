@@ -1,0 +1,92 @@
+.new-note,
+.notes-top-container .shrinked-note-input {
+    padding: .5rem;
+    border: 1px solid lightgrey;
+    width: 55%;
+    border-radius: .7rem;
+    align-self: flex-start;
+    box-shadow: 0 2px 5px grey;
+    transition: background-color .3s;
+}
+
+.new-note-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.new-note-bottom {
+    position: relative;
+    display: flex;
+    padding: .5rem;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.new-note-bottom img {
+    box-sizing: content-box;
+    height: 1rem;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+.new-note-bottom img:hover {
+    background-color: #D8D9D9;
+    border-radius: 50%;
+}
+
+.new-note-bottom #yt:hover {
+    border-radius: .8rem;
+}
+
+.new-note-bottom #save {
+    color: #4C8AF4;
+}
+
+.edit-modal {
+    position: fixed;
+    width: 50%;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-30%, -50%);
+    background-color: white;
+}
+
+/* colors */
+.color-select {
+    display: flex;
+    flex-flow: row wrap;
+    position: absolute;
+    justify-content: space-evenly;
+    gap: .1rem;
+    padding: .5rem;
+    border-radius: 2.5rem;
+    background-color: rgba(216, 212, 212, 0.662);
+    opacity: 0;
+    bottom: -3.1rem;
+    width: 21rem;
+    transition: opacity .4s;
+    pointer-events: none;
+}
+
+.color-select.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.color {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+}
+
+.color:hover {
+    cursor: pointer;
+    outline: 1px solid white;
+}
+
+.note-type-select {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}

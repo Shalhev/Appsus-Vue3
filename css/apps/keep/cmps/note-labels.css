@@ -1,0 +1,62 @@
+.keep-app .labels-container {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: .7rem;
+    top: -1.9rem;
+}
+
+.keep-app .labels-container li {
+    border: none;
+}
+
+.keep-app .label {
+    font-size: .65em;
+    padding: .3rem;
+    outline: 1px solid #4C8AF4;
+    border-radius: 1rem;
+    background-color: rgba(255, 255, 255, 0.442);
+    color: #4C8AF4;
+    cursor: pointer;
+}
+
+.labels-container li .add-label {
+    color: green;
+    padding: .135rem;
+    font-size: 1.35em;
+}
+
+.labels-container li .remove-label {
+    color: rgb(211, 16, 16);
+    padding: .1rem;
+}
+
+.add-label-modal {
+    position: absolute;
+    top: -1rem;
+    max-width: 100px;
+}
+
+.add-label-modal input {
+    background-color: lightgrey;
+    border-radius: 1rem;
+    font-size: 1em;
+    padding: 0.3rem;
+}
+
+.filtered-by-label .note-container {
+    display: block;
+    margin: 1rem;
+}
+
+.filtered-by-label button {
+    padding: .7rem 1rem;
+    background-color: transparent;
+    color: #4C8AF4;
+    border: none;
+}
+
+.filtered-by-label button:hover {
+    background-color: #F7FAFE;
+}
