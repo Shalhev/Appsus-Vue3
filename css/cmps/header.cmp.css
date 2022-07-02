@@ -49,6 +49,6 @@
     background-color: #f8f9fa;
 }
 
-.router-link-exact-active{
+.app-header .router-link-exact-active{
     border-bottom: 3px solid #1a73e8;
 }

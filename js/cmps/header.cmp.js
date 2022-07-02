@@ -16,7 +16,7 @@ export default {
             <li><router-link to="/">Home</router-link></li>
             <li><router-link to="/mail">Mail</router-link></li>
             <li><router-link to="/keep/notes">Keep</router-link></li>
-            <!-- <router-link to="/books">Books</router-link> -->
+            <li><router-link to="/books">Books</router-link></li>
             </ul>
         </nav>
     </section>

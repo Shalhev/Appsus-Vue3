@@ -10,22 +10,22 @@ export default {
             <div class="card">
                 <img src="./imgs/home/mail-logo.webp" alt="card" style="width:100%">
                 <div class="container">
-                    <h3>Save your thoughts, wherever you are</h3>
+                    <h3>Simple. Secure. Reliable messaging.</h3>
                     <router-link to="/mail"> <button class="app-btn">Mail</button></router-link>
                 </div>
             </div> 
             <div class="card">
                 <img src="./imgs/home/keep-logo.webp" alt="card" style="width:100%">
                 <div class="container">
-                    <h3>Save your thoughts, wherever you are</h3>
+                    <h3>Save your thoughts, wherever you are.</h3>
                     <router-link to="/keep"> <button class="app-btn">Keep</button></router-link>
                 </div>
             </div>
             <div class="card">
                 <img src="./imgs/home/books-logo.webp" alt="card" style="width:100%">
                 <div class="container">
-                    <h3>Save your thoughts, wherever you are</h3>
-                    <router-link to="/"> <button class="app-btn">Books</button></router-link>
+                    <h3>Search the world's most comprehensive index of books.</h3>
+                    <router-link to="/books"> <button class="app-btn">Books</button></router-link>
                 </div>
             </div>
         </div>

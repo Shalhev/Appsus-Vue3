@@ -1,0 +1,8 @@
+/* user-msg */
+.user-msg {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background-color: lightgreen;
+    padding: 10px;
+}

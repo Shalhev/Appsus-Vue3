@@ -1,0 +1,43 @@
+/* reviews */
+.review-add-container {
+    margin-bottom: 30px;
+}
+
+.reviews-container {
+    padding: 35px;
+}
+
+.review-add-container .rate span {
+    cursor: pointer;
+    color: #bfbfbfa1;
+    font-size: 1.3em;
+}
+
+.review-add-container .rate .star {
+    color: rgb(255, 245, 54);
+}
+
+textarea {
+    resize: none;
+    width: 100%;
+}
+
+.review {
+    border-bottom: 1px solid rgb(74, 74, 74);
+    padding: 5px;
+}
+
+.reviews-title {
+    font-size: 18px;
+    color: #1c1c1c;
+    font-weight: bold;
+}
+
+.review-info {
+    font-weight: bold;
+    padding-inline-end: 7px;
+}
+
+.reviews .star {
+    color: rgb(255, 245, 54);
+}

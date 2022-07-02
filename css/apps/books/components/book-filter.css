@@ -1,0 +1,35 @@
+/* book-filter */
+.books-filter {
+    text-align: center;
+    padding: 15px;
+}
+
+.books-filter label {
+    padding-inline-start: 20px;
+    padding-inline-end: 5px;
+}
+
+.books-filter input {
+    border-radius: 5px;
+    padding: 4px;
+    border: 0;
+}
+
+.books-filter button {
+    border-radius: 4px;
+    border: 0;
+    margin-inline-start: 10px;
+    padding: 0 15px;
+    height: 20px;
+    background-color: rgba(136, 136, 136, 0.548);
+    color: white;
+}
+.book-add{
+    font-weight: 700;
+}
+.book-add:hover{
+    color: rgb(64, 64, 65);
+}
+.book-add-btn{
+margin-bottom: 1em;
+}

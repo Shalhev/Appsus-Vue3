@@ -1,0 +1,54 @@
+/* book-details */
+.book-details-container {
+    /* background-color: #457b9d; */
+    padding: 35px;
+
+}
+
+.book-details {
+    color: #ececec;
+    padding: 35px;
+    display: grid;
+    column-gap: 25px;
+    grid-template-columns: 20% 60% 20%;
+}
+
+.book-details h2 {
+    color: #fff;
+}
+
+.book-details h3 {
+    color: #FFF;
+    /* margin-bottom: 35px; */
+}
+
+.book-details .authors {
+    font-size: 13px;
+    margin-bottom: 35px;
+}
+
+
+
+.book-details img {
+    width: 100%;
+}
+
+.red {
+    color: #e61e25;
+}
+
+.green {
+    color: rgb(0, 255, 0);
+}
+
+.book-details .right-side p {
+    padding: 0;
+}
+
+.book-details .right-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+}

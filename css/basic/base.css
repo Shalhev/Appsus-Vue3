@@ -11,6 +11,12 @@ a{
     color: black;
 }
 
-.router-link-exact-active {
-    /* color: dodgerblue; */
+
+button:hover {
+    cursor: pointer;
+}
+
+.success {
+    background-color: greenyellow;
+    color: black;
 }
