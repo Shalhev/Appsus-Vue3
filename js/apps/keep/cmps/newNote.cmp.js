@@ -33,32 +33,8 @@ export default {
             <img @click="toggleColor" src="./imgs/apps/keep/color-palette.png" alt="color">
         </div>
         <div class="color-select" :class="{open:colorSelect}">
-            <!-- colors -->
-            <div @click="setColor('#FFFFFF')" class="color white" style="background-color:#FFFFFF"></div>
-            <div @click="setColor('#F28B82')" class="color red" style="background-color:#F28B82"></div>
-            <div @click="setColor('#FBBC02')" class="color orange" style="background-color:#FBBC02"></div>
-            <div @click="setColor('#FFF476')" class="color yellow" style="background-color:#FFF476"></div>
-            <div @click="setColor('#CCFF8F')" class="color green" style="background-color:#CCFF8F"></div>
-            <div @click="setColor('#A7FFEB')" class="color cyan" style="background-color:#A7FFEB"></div>
-            <div @click="setColor('#CBF0F8')" class="color blue" style="background-color:#CBF0F8"></div>
-            <div @click="setColor('#AECBFA')" class="color dark-blue" style="background-color:#AECBFA"></div>
-            <div @click="setColor('#D7AEFB')" class="color purple" style="background-color:#D7AEFB"></div>
-            <div @click="setColor('#FBCFE8')" class="color pink" style="background-color:#FBCFE8"></div>
-            <div @click="setColor('#E6C9A8')" class="color brown" style="background-color:#E6C9A8"></div>
-            <div @click="setColor('#E8EAED')" class="color gray" style="background-color:#E8EAED"></div>
-            <!-- backgrounds -->
-            <div @click="setBackImg(1)" class="color bg1" style="backgroundImage:url('./imgs/apps/keep/bg1.webp')"></div>
-            <div @click="setBackImg(2)" class="color bg2" style="backgroundImage:url('./imgs/apps/keep/bg2.webp')"></div>
-            <div @click="setBackImg(3)" class="color bg3" style="backgroundImage:url('./imgs/apps/keep/bg3.webp')"></div>
-            <div @click="setBackImg(4)" class="color bg4" style="backgroundImage:url('./imgs/apps/keep/bg4.webp')"></div>
-            <div @click="setBackImg(5)" class="color bg5" style="backgroundImage:url('./imgs/apps/keep/bg5.webp')"></div>
-            <div @click="setBackImg(6)" class="color bg6" style="backgroundImage:url('./imgs/apps/keep/bg6.webp')"></div>
-            <div @click="setBackImg(7)" class="color bg7" style="backgroundImage:url('./imgs/apps/keep/bg7.webp')"></div>
-            <div @click="setBackImg(8)" class="color bg8" style="backgroundImage:url('./imgs/apps/keep/bg8.webp')"></div>
-            <div @click="setBackImg(9)" class="color bg9" style="backgroundImage:url('./imgs/apps/keep/bg9.webp')"></div>
-            <div @click="setBackImg(10)" class="color bg10" style="backgroundImage:url('./imgs/apps/keep/bg10.webp')"></div>
-            <div @click="setBackImg(11)" class="color bg11" style="backgroundImage:url('./imgs/apps/keep/bg11.webp')"></div>
-            <div @click="setBackImg(12)" class="color bg12" style="backgroundImage:url('./imgs/apps/keep/bg12.webp')"></div>
+            <div v-for="color in colors" class="color" @click="setColor(color)" :style="{backgroundColor:color}"></div>    
+            <div v-for="num in 11" class="color" @click="setBackImg(num + 1)" :style="getBgImg(num+1)"></div>
         </div>
     </div>
 </section>
@@ -69,7 +45,9 @@ export default {
         return {
             note: null,
             colorSelect: false,
-            tasks: ['']
+            tasks: [''],
+            colors: ["#FFFFFF", "#F28B82", "#FBBC02", "#FFF476", "#CCFF8F", "#A7FFEB",
+                "#CBF0F8", "#AECBFA", "#D7AEFB", "#FBCFE8", "#E6C9A8", "#E8EAED"],
         };
     },
     created() {
@@ -116,6 +94,10 @@ export default {
             this.toggleColor()
             if (this.editedNote) this.blurSave()
         },
+        getBgImg(imgNum) {
+            return `background-image: url('./imgs/apps/keep/bg${imgNum}.webp')`
+        }
+        ,
         setBackImg(imgNum) {
             const imgLink = `url('./imgs/apps/keep/bg${imgNum}.webp')`
             this.$refs.newNote.style.backgroundImage = imgLink

@@ -66,6 +66,7 @@
     bottom: -3.1rem;
     width: 21rem;
     transition: opacity .4s;
+    z-index: 1;
     pointer-events: none;
 }
 
