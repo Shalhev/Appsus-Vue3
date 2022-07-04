@@ -13,10 +13,11 @@ export default {
     <div v-if="note.type==='note-video'" class="new-note-inputs">
         <input type="text" placeholder="Enter video url..." v-model="note.info.videoUrl" @blur="blurSave">
     </div>
+
     <div v-if="note.type ==='note-todos'" class="new-note-inputs">
         <input type="text" placeholder="Enter todos title" v-model="note.info.title" @blur="blurSave">
-        <input v-for="(task,idx) in tasks" v-model="tasks[idx]" type="text" placeholder="enter task..."
-            @click="addTask(idx)"  @blur="blurSave">
+        <input v-for="(todo,idx) in note.info.todos" v-model="note.info.todos[idx].txt" type="text" placeholder="enter task..."
+            @click="addTodo(idx)"  @blur="blurSave">
     </div>
 
     <div class="new-note-bottom">
@@ -45,46 +46,32 @@ export default {
         return {
             note: null,
             colorSelect: false,
-            tasks: [''],
             colors: ["#FFFFFF", "#F28B82", "#FBBC02", "#FFF476", "#CCFF8F", "#A7FFEB",
                 "#CBF0F8", "#AECBFA", "#D7AEFB", "#FBCFE8", "#E6C9A8", "#E8EAED"],
         };
     },
     created() {
-        if (this.editedNote) {
-            this.note = this.editedNote
-            if (this.editedNote.type === 'note-todos')
-                this.tasks = this.loadTodos(this.editedNote.info.todos)
-        }
+        if (this.editedNote) this.note = this.editedNote
         else this.note = keepService.getEmptyNote()
     },
     methods: {
-        addTask(idx) {
-            if (idx === this.tasks.length - 1) this.tasks.push('')
+        addTodo(idx) {
+            if (idx === this.note.info.todos.length - 1)
+             this.note.info.todos.push({txt:'',isDone:false})
         },
         toggleColor() {
             this.colorSelect = !this.colorSelect
         },
-        formatTodos() {
-            this.note.info.todos = this.tasks.map(task => {
-                if (!task) return ' '
-                return { txt: task.trim(), isDone: false }
-            })
-        },
-        loadTodos(todos) {
-            if (!todos.length) return ['']
-            return this.note.info.todos.map(noteObj => noteObj.txt)
-        },
         save() {
-            if (this.note.type === 'note-todos') this.formatTodos()
-            this.$emit('save-note', this.note)
+            if (this.editedNote) keepService.updateNote(this.note)
+            else this.$emit('save-note', this.note)
         },
         blurSave() {
-            if (this.note.type === 'note-todos') this.formatTodos()
-            if (this.editedNote) this.$emit('update-note', this.note)
+            keepService.updateNote(this.note)
         },
         setType(e) {
             this.note.type = e.target.dataset.type
+            this.note.info.todos.push({txt:'',isDone:false})
         },
         setColor(color) {
             this.note.style.backgroundImage = null
@@ -92,7 +79,7 @@ export default {
             this.$refs.newNote.style.backgroundColor = color
             this.note.style.backgroundColor = color
             this.toggleColor()
-            if (this.editedNote) this.blurSave()
+            if (this.editedNote) this.save()
         },
         getBgImg(imgNum) {
             return `background-image: url('./imgs/apps/keep/bg${imgNum}.webp')`
@@ -103,7 +90,7 @@ export default {
             this.$refs.newNote.style.backgroundImage = imgLink
             this.note.style.backgroundImage = imgLink
             this.toggleColor()
-            if (this.editedNote) this.blurSave()
+            if (this.editedNote) this.save()
         },
     },
     computed: {},

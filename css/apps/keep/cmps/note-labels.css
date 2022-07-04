@@ -13,7 +13,7 @@
 
 .keep-app .label {
     font-size: .65em;
-    padding: .3rem;
+    padding: .1em .7em;
     outline: 1px solid #4C8AF4;
     border-radius: 1rem;
     background-color: rgba(255, 255, 255, 0.442);
@@ -30,6 +30,7 @@
 .labels-container li .remove-label {
     color: rgba(211, 16, 16, 0.631);
     padding: .1rem;
+    font-size: .9em;
 }
 
 .add-label-modal {

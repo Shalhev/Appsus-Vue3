@@ -1,8 +1,10 @@
+import { keepService } from "../service/keep.service.js";
+
 export default {
     template: `
         <ul class="labels-container">
             <li> <button class="fa add-label" @click="addLabel">&#xf055;</button></li>
-            <li v-for="(label,idx) in labels" :key="idx">
+            <li v-for="(label,idx) in shownNote.info.labels" :key="idx">
                 <span class="label" @click="filterByLabel($event)">{{label}} </span>
                 <button @click="removeLabel(idx)" class="fa remove-label">&#xf057;</button>
             </li>
@@ -11,30 +13,33 @@ export default {
             <input ref="labelModal" type="text" maxlength="20" placeholder="enter label" @blur="saveLabel($event)">
         </div>
 `, props: ['note'],
-    emits: ['update-note', 'filter-by-label'],
+    emits: ['filter-by-label'],
     data() {
         return {
-            labels: this.note.info.labels,
+            shownNote: this.note,
             adding: false,
         };
     },
     created() {
     },
     methods: {
+        updateNote() {
+            keepService.updateNote(this.note).then(note => this.shownNote = note)
+        },
         removeLabel(labelIdx) {
-            this.note.info.labels.splice(labelIdx, 1);
-            this.$emit('update-note', this.note)
+            this.shownNote.info.labels.splice(labelIdx, 1);
+            this.updateNote()
         },
         addLabel() {
             this.adding = true;
-            setTimeout(() => this.$refs.labelModal.focus(), 100)
+            setTimeout(() => this.$refs.labelModal.focus(), 300)
         },
         saveLabel(ev) {
-            if (!this.note.info.labels) this.note.info.labels = []
+            if (!this.shownNote.info.labels) this.shownNote.info.labels = []
             const label = ev.target.value
             if (label) {
-                this.note.info.labels.unshift(label.trim())
-                this.$emit('update-note', this.note)
+                this.shownNote.info.labels.unshift(label.trim())
+                this.updateNote()
             }
             ev.target.value = ''
             this.adding = false

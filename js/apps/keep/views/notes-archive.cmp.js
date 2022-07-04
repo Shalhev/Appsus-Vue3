@@ -1,9 +1,5 @@
-import newNote from "../cmps/newNote.cmp.js"
-import noteImg from '../cmps/note-img.cmp.js'
-import noteTodos from '../cmps/note-todos.cmp.js'
-import noteTxt from '../cmps/note-txt.cmp.js'
-import noteVideo from '../cmps/note-video.cmp.js'
-import noteBtns from '../cmps/note-btns.cmp.js'
+import { keepService } from "../service/keep.service.js";
+import notePreview from "../cmps/note-preview.cmp.js"
 
 export default {
     template: `
@@ -12,32 +8,19 @@ export default {
                   <h2>Your Archived Notes</h2>
             </div>
             <div class="notes-container">
-                <div v-if="notes" v-for="note in archNotes" :key="note.id" class="note-container">
-                        <component :is="note.type" class="note"
-                        :style="note.style" :note="note" @update-note="updateNote"> </component>
-                        <note-btns :note="note"  @bin-note="binNote" @archive-note="unarchNote" />
-                </div>
+                <article v-if="notes" v-for="note in archNotes" :key="note.id" class="note-container">
+                    <note-preview :note="note"/>
+                </article>
             </div>
     </section>
 `, props: ['notes'],
-    components: {
-        newNote, noteImg, noteTodos, noteVideo, noteTxt, noteBtns
-    },
+    components: { notePreview },
     data() {
         return {};
     },
     created() {
     },
     methods: {
-        unarchNote(noteId) {
-            this.$emit('archive', noteId)
-        },
-        binNote(noteId) {
-            this.$emit('bin', noteId)
-        },
-        updateNote(note) {
-            this.$emit('update', note)
-        }
     },
     computed: {
         archNotes() {

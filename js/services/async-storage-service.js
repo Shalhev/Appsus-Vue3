@@ -32,7 +32,7 @@ function post(entityType, newEntity) {
             return newEntity;
         })
 }
-
+//create new item and place it first
 function unshift(entityType, newEntity) {
     newEntity.id = makeId()
     return query(entityType)

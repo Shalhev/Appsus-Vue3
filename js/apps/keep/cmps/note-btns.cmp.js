@@ -1,3 +1,5 @@
+import { keepService } from "../service/keep.service.js";
+
 export default {
     template: `
          <div v-if="note.isEdit || !isPrimary">
@@ -18,6 +20,7 @@ export default {
     props: ['note'],
     data() {
         return {
+            shownNote: this.note,
             isPrimary: true,
         };
     },
@@ -25,19 +28,28 @@ export default {
         if (this.note.isBin || this.note.isArch) this.isPrimary = false
     },
     methods: {
+        updateNote() {
+            keepService.updateNote(this.note).then(note => this.shownNote = note)
+        },
         togglePin() {
-            this.$emit('toggle-pin', this.note.id)
+            this.shownNote.isPinned = !this.shownNote.isPinned
+            this.updateNote()
         },
         archiveNote() {
-            this.$emit('archive-note', this.note.id)
+            this.shownNote.isArch = !this.shownNote.isArch
+            this.updateNote()
         },
         binNote() {
             if (this.note.isBin) this.$emit('delete-note', this.note.id)
-            else this.$emit('bin-note', this.note.id)
+            else {
+                this.shownNote.isBin = !this.shownNote.isBin
+                this.updateNote()
+            }
         },
         restoreNote() {
-            if (this.note.isBin) this.$emit('bin-note', this.note.id)
-            else this.archiveNote()
+            if (this.note.isBin) this.shownNote.isBin = !this.shownNote.isBin
+            else this.shownNote.isArch = !this.shownNote.isArch
+            this.updateNote()
         },
         setNoteToEdit() {
             this.$emit('set-edit-note', this.note)

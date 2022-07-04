@@ -4,12 +4,7 @@ export const keepService = {
     query,
     getEmptyNote,
     addNote,
-    toggleBinNote,
-    togglePinNote,
-    toggleArchNote,
     removeNote,
-    toggleDoneTask,
-    removeTask,
     updateNote,
     emptyBin,
 
@@ -334,7 +329,7 @@ function getEmptyNote() {
             videoUrl: null,
             title: null,
             labels: null,
-            todos: null,
+            todos: [],
         },
         style: {
             backgroundColor: '#FFFFFF'
@@ -351,61 +346,15 @@ function addNote(note) {
         .then(() => storageService.query(NOTES_KEY))
 }
 
-
 function removeNote(noteId) {
     return storageService.remove(NOTES_KEY, noteId)
-        .then(() => storageService.query(NOTES_KEY))
-}
-function togglePinNote(noteId) {
-    return storageService.get(NOTES_KEY, noteId)
-        .then(note => {
-            note.isPinned = !note.isPinned
-            return storageService.put(NOTES_KEY, note)
-        }).then(() => storageService.query(NOTES_KEY))
-}
-
-function toggleBinNote(noteId) {
-    return storageService.get(NOTES_KEY, noteId)
-        .then(note => {
-            note.isBin = !note.isBin
-            if (note.isBin) note.isArch = false
-            return storageService.put(NOTES_KEY, note)
-        })
-        .then(() => storageService.query(NOTES_KEY))
-}
-function toggleArchNote(noteId) {
-    return storageService.get(NOTES_KEY, noteId)
-        .then(note => {
-            note.isArch = !note.isArch
-            if (note.isArch) note.isBin = false
-            return storageService.put(NOTES_KEY, note)
-        })
-        .then(() => storageService.query(NOTES_KEY))
-}
-
-function toggleDoneTask(noteId, taskIdx) {
-    return storageService.get(NOTES_KEY, noteId)
-        .then(note => {
-            note.info.todos[taskIdx].isDone = !note.info.todos[taskIdx].isDone
-            return storageService.put(NOTES_KEY, note)
-        })
-}
-
-function removeTask(noteId, taskIdx) {
-    return storageService.get(NOTES_KEY, noteId)
-        .then(note => {
-            note.info.todos.splice(taskIdx, 1)
-            return storageService.put(NOTES_KEY, note)
-        })
 }
 
 function updateNote(note) {
     return storageService.put(NOTES_KEY, note)
-        .then(() => storageService.query(NOTES_KEY))
 }
 
 function emptyBin(notes) {
     const filterdNotes = notes.filter(note => !note.isBin)
     storageService.save(NOTES_KEY, filterdNotes)
-    return storageService.query(NOTES_KEY)
 }

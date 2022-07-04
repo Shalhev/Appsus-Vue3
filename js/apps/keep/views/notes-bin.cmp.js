@@ -1,9 +1,5 @@
-import newNote from "../cmps/newNote.cmp.js"
-import noteImg from '../cmps/note-img.cmp.js'
-import noteTodos from '../cmps/note-todos.cmp.js'
-import noteTxt from '../cmps/note-txt.cmp.js'
-import noteVideo from '../cmps/note-video.cmp.js'
-import noteBtns from '../cmps/note-btns.cmp.js'
+import { keepService } from "../service/keep.service.js";
+import notePreview from "../cmps/note-preview.cmp.js"
 
 export default {
     template: `
@@ -13,40 +9,34 @@ export default {
                   <button class="empty-bin" @click="emptyBin">Empty bin</button>
             </div>
             <div class="notes-container">
-                <div v-if="notes" v-for="note in binnedNotes" :key="note.id" class="note-container">
-                        <component :is="note.type" class="note" :style="note.style"
-                        :note="note" @update-note="updateNote">
-                    </component>
-                    <note-btns :note="note"  @bin-note="unbinNote" @delete-note="deleteNote" />
+                <div v-if="allNotes" v-for="note in binnedNotes" :key="note.id" class="note-container">
+                    <note-preview :note="note" @delete-note="deleteNote"/>
                 </div>
             </div>
     </section>
 `, props: ['notes'],
-    components: {
-        newNote, noteImg, noteTodos, noteVideo, noteTxt, noteBtns
-    },
+    components: { notePreview },
     data() {
-        return {};
+        return {
+            allNotes: this.notes
+        };
     },
     created() {
+        console.log(this.allNotes);
     },
     methods: {
-        unbinNote(noteId) {
-            this.$emit('bin', noteId)
-        },
         deleteNote(noteId) {
-            this.$emit('delete', noteId)
+            this.allNotes = this.allNotes.filter(note => note.id !== noteId)
+            keepService.removeNote(noteId)
         },
         emptyBin() {
-            this.$emit('empty-bin', this.notes)
+            this.allNotes = null
+            keepService.emptyBin(this.notes)
         },
-        updateNote(note) {
-            this.$emit('update', note)
-        }
     },
     computed: {
         binnedNotes() {
-            return this.notes.filter(note => note.isBin)
+            return this.allNotes.filter(note => note.isBin)
         }
     },
     unmounted() { },
