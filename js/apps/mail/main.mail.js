@@ -36,7 +36,7 @@ export default {
         this.loggedinUserr = emailService.getLoggedinUser()
         emailService.query().then(emails => {
             this.emails = emails
-            this.unReadCount = this.emails.filter(email => !email.isRead && !email.isBin).length - 1
+            this.unReadCount = this.emails.filter(email => !email.isRead && !email.isBin).length
         })
         this.filter = this.$route.params.filter
         const { emailId } = this.$route.params
@@ -60,7 +60,7 @@ export default {
         updateEmails() {
             emailService.query().then(emails => {
                 this.emails = emails
-                this.unReadCount = this.emails.filter(email => !email.isRead && !email.isBin).length - 1
+                this.unReadCount = this.emails.filter(email => !email.isRead && !email.isBin).length
             })
         },
         closeCompose() {
